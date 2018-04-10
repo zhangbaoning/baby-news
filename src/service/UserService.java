@@ -2,14 +2,36 @@ package service;
 
 import entity.User;
 
-import java.util.List;
-
 public interface UserService {
     /**
+     * 保存
+     *
+     * @param user
+     */
+    void insertUser(User user);
+
+    /**
+     * 删除
+     *
+     * @param user
+     */
+    void deleteUser(User user);
+
+    /**
+     * 更新
+     *
+     * @param user
+     */
+
+    void updateUser(User user);
+
+    /**
+     * 查询
      *
      * @param user
      * @return
      */
-    public List<User> getUser(User user);
+
+    User selectUser(User user);
 
 }
