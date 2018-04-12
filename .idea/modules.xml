@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/baby-news.iml" filepath="$PROJECT_DIR$/baby-news.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../baby-news-vue/baby-news-vue.iml" filepath="$PROJECT_DIR$/../baby-news-vue/baby-news-vue.iml" />
     </modules>
   </component>
 </project>

@@ -935,7 +935,7 @@
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="230" name="desc">
+    <column id="236" parent="230" name="descr">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>

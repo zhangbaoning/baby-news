@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Article {
     private int id;
     private String title;
-    private String desc;
+    private String descr;
     private String content;
     private String clickCount;
     private Timestamp datePublish;
@@ -40,13 +40,13 @@ public class Article {
     }
 
     @Basic
-    @Column(name = "desc", nullable = true, length = 255)
-    public String getDesc() {
-        return desc;
+    @Column(name = "descr", nullable = true, length = 255)
+    public String getDescr() {
+        return descr;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescr(String descr) {
+        this.descr = descr;
     }
 
     @Basic
@@ -116,7 +116,7 @@ public class Article {
         Article article = (Article) o;
         return id == article.id &&
                 Objects.equals(title, article.title) &&
-                Objects.equals(desc, article.desc) &&
+                Objects.equals(descr, article.descr) &&
                 Objects.equals(content, article.content) &&
                 Objects.equals(clickCount, article.clickCount) &&
                 Objects.equals(datePublish, article.datePublish) &&
@@ -128,6 +128,6 @@ public class Article {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, desc, content, clickCount, datePublish, userId, categoryId, dateModified);
+        return Objects.hash(id, title, descr, content, clickCount, datePublish, userId, categoryId, dateModified);
     }
 }

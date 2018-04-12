@@ -5,6 +5,7 @@ import entity.Article;
 import org.springframework.stereotype.Service;
 import service.ArticleService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @Author zhangbaoning
  * @Date 2018/4/10
  */
-@Service
+@Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
     /**
@@ -20,7 +21,8 @@ public class ArticleServiceImpl implements ArticleService {
      *
      * @param article
      */
-    ArticleDao articleDao;
+    @Resource
+    private ArticleDao articleDao;
 
     public void insertArticle(Article article) {
         articleDao.insert(article);
