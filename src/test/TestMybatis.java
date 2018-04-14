@@ -1,11 +1,13 @@
 package test;
 
 import entity.Article;
+import entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import service.ArticleService;
+import service.UserService;
 
 import javax.annotation.Resource;
 
@@ -20,6 +22,8 @@ import javax.annotation.Resource;
 public class TestMybatis {
     @Resource
     private ArticleService articleService;
+    @Resource
+    private UserService userService;
 
     @Test
     public void test1() {
@@ -34,5 +38,13 @@ public class TestMybatis {
 //        article.setDesc("rretre");
         articleService.insertArticle(article);
 //        articleService.selectArticle(article);
+    }
+
+    @Test
+    public void testGetUser() {
+        User user = new User();
+        user.setId(1);
+        System.out.println(userService.selectUser(user));
+
     }
 }

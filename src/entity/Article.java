@@ -16,7 +16,7 @@ public class Article {
     private String clickCount;
     private Timestamp datePublish;
     private String userId;
-    private String categoryId;
+    private int categoryId;
     private Timestamp dateModified;
 
     @Id
@@ -89,13 +89,11 @@ public class Article {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "category_id", nullable = true, length = 255)
-    public String getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 

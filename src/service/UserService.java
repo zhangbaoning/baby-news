@@ -8,7 +8,7 @@ public interface UserService {
      *
      * @param user
      */
-    void insertUser(User user);
+    int insertUser(User user);
 
     /**
      * 删除

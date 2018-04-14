@@ -2,6 +2,8 @@ package service;
 
 import entity.Article;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author zhangbaoning
@@ -38,4 +40,13 @@ public interface ArticleService {
      */
 
     Article selectArticle(Article article);
+
+    /**
+     * 对资讯进行分页查询
+     *
+     * @param page 第几页
+     * @param size 每一页的资讯数
+     * @return
+     */
+    List<Article> selectArticleAll(int page, int size);
 }
