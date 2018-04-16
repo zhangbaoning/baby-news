@@ -2,9 +2,7 @@ package controller;
 
 import entity.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
 import javax.annotation.Resource;
@@ -22,7 +20,7 @@ public class UserController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Map login(User user) {
+    public Map login(@RequestBody User user) {
         Map responseMap = new HashMap();
         User loginUser = userService.selectUser(user);
         if (loginUser != null) {
