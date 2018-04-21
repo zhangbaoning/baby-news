@@ -4,6 +4,7 @@ import dao.UserDao;
 import entity.User;
 import org.springframework.stereotype.Service;
 import service.UserService;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -60,7 +61,10 @@ public class UserServiceImpl implements UserService {
 //       return userDao.s;
         List<User> userList = null;
         try {
-            userList = userDao.select(user);
+            Example example = new Example(User.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("username").andEqualTo("password");
+            userList = userDao.selectByExample(example);
         } catch (Exception e) {
             e.printStackTrace();
         }
