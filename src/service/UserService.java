@@ -2,6 +2,8 @@ package service;
 
 import entity.User;
 
+import java.util.List;
+
 public interface UserService {
     /**
      * 保存
@@ -34,4 +36,10 @@ public interface UserService {
 
     User selectUser(User user);
 
+    /**
+     * 获取到全部用户
+     *
+     * @return 用户集合
+     */
+    List<User> getAll();
 }

@@ -71,5 +71,14 @@ public class UserServiceImpl implements UserService {
         return userList.get(0);
     }
 
+    /**
+     * 获取到全部用户
+     *
+     * @return 用户集合
+     */
+    public List<User> getAll() {
+        return userDao.selectAll();
+    }
+
 
 }
