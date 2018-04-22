@@ -14,7 +14,7 @@ public class User {
     private String password;
     private String nickname;
     private String mobile;
-    private Date dataJoined;
+    private Date dateJoined;
     private String roleId;
 
     @Id
@@ -68,13 +68,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "data_joined", nullable = true)
+    @Column(name = "date_joined", nullable = true)
     public Date getDataJoined() {
-        return dataJoined;
+        return dateJoined;
     }
 
     public void setDataJoined(Date dataJoined) {
-        this.dataJoined = dataJoined;
+        this.dateJoined = dateJoined;
     }
 
     @Basic
@@ -97,13 +97,13 @@ public class User {
                 Objects.equals(password, user.password) &&
                 Objects.equals(nickname, user.nickname) &&
                 Objects.equals(mobile, user.mobile) &&
-                Objects.equals(dataJoined, user.dataJoined) &&
+                Objects.equals(dateJoined, user.dateJoined) &&
                 Objects.equals(roleId, user.roleId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, username, password, nickname, mobile, dataJoined, roleId);
+        return Objects.hash(id, username, password, nickname, mobile, dateJoined, roleId);
     }
 }
