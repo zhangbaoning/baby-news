@@ -15,7 +15,7 @@ public interface ArticleService {
      *
      * @param article
      */
-    void insertArticle(Article article);
+    void insertArticle(Article article) throws Exception;
 
     /**
      * 删除

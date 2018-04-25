@@ -26,7 +26,7 @@ public class TestMybatis {
     private UserService userService;
 
     @Test
-    public void test1() {
+    public void test1() throws Exception {
         // System.out.println(user.getUserName());
         // logger.info("值："+user.getUserName());
         Article article = new Article();
