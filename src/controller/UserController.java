@@ -28,7 +28,9 @@ public class UserController {
         Map responseMap = new HashMap();
         User loginUser = userService.selectUser(user);
         if (loginUser != null) {
-            responseMap.put("user", loginUser);
+
+//            登陆之后将UserID返回
+            responseMap.put("user", loginUser.getId());
             responseMap.put("info", ResponseStatus.SUCCESS);
             return responseMap;
         } else {

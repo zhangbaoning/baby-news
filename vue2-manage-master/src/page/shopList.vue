@@ -6,71 +6,86 @@
                 :data="tableData"
                 style="width: 100%">
                 <el-table-column type="expand">
-                  <template scope="props">
-                    <el-form label-position="left" inline class="demo-table-expand">
-                      <el-form-item label="店铺名称">
-                        <span>{{ props.row.name }}</span>
-                      </el-form-item>
-                      <el-form-item label="店铺地址">
-                        <span>{{ props.row.address }}</span>
-                      </el-form-item>
-                      <el-form-item label="店铺介绍">
-                        <span>{{ props.row.description }}</span>
-                      </el-form-item>
-                      <el-form-item label="店铺 ID">
-                        <span>{{ props.row.id }}</span>
-                      </el-form-item>
-                      <el-form-item label="联系电话">
-                        <span>{{ props.row.phone }}</span>
-                      </el-form-item>
-                      <el-form-item label="评分">
-                        <span>{{ props.row.rating }}</span>
-                      </el-form-item>
-                      <el-form-item label="销售量">
-                        <span>{{ props.row.recent_order_num }}</span>
-                      </el-form-item>
-                      <el-form-item label="分类">
-                        <span>{{ props.row.category }}</span>
-                      </el-form-item>
-                    </el-form>
-                  </template>
+                    <template scope="props">
+                        <el-form label-position="left" inline class="demo-table-expand">
+                            <el-form-item label="店铺名称">
+                                <span>{{ props.row.name }}</span>
+                            </el-form-item>
+                            <el-form-item label="店铺地址">
+                                <span>{{ props.row.address }}</span>
+                            </el-form-item>
+                            <el-form-item label="店铺介绍">
+                                <span>{{ props.row.description }}</span>
+                            </el-form-item>
+                            <el-form-item label="店铺 ID">
+                                <span>{{ props.row.id }}</span>
+                            </el-form-item>
+                            <el-form-item label="联系电话">
+                                <span>{{ props.row.phone }}</span>
+                            </el-form-item>
+                            <el-form-item label="评分">
+                                <span>{{ props.row.rating }}</span>
+                            </el-form-item>
+                            <el-form-item label="销售量">
+                                <span>{{ props.row.recent_order_num }}</span>
+                            </el-form-item>
+                            <el-form-item label="分类">
+                                <span>{{ props.row.category }}</span>
+                            </el-form-item>
+                        </el-form>
+                    </template>
+                </el-table-column>
+                <el-form-item
+                    label="分类"
+                    prop="category">
+                </el-form-item>
+                <el-table-column
+                    label="文章题目"
+                    prop="title">
                 </el-table-column>
                 <el-table-column
-                  label="店铺名称"
-                  prop="name">
+                    label="文章介绍"
+                    prop="descr">
                 </el-table-column>
                 <el-table-column
-                  label="店铺地址"
-                  prop="address">
+                    label="文章作者"
+                    prop="user">
                 </el-table-column>
                 <el-table-column
-                  label="店铺介绍"
-                  prop="description">
+                    label="创建时间"
+                    prop="dateOfPublish">
+                </el-table-column>
+                <el-table-column
+                    label="修改时间"
+                    prop="dateOfModified">
                 </el-table-column>
                 <el-table-column label="操作" width="200">
-                  <template scope="scope">
-                    <el-button
-                      size="mini"
-                      @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                    <el-button
-                      size="mini"
-                      type="Success"
-                      @click="addFood(scope.$index, scope.row)">添加食品</el-button>
-                    <el-button
-                      size="mini"
-                      type="danger"
-                      @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                  </template>
+                    <template scope="scope">
+                        <el-button
+                            size="mini"
+                            @click="handleEdit(scope.$index, scope.row)">编辑
+                        </el-button>
+                        <el-button
+                            size="mini"
+                            type="Success"
+                            @click="addFood(scope.$index, scope.row)">添加食品
+                        </el-button>
+                        <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleDelete(scope.$index, scope.row)">删除
+                        </el-button>
+                    </template>
                 </el-table-column>
             </el-table>
             <div class="Pagination">
                 <el-pagination
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange"
-                  :current-page="currentPage"
-                  :page-size="20"
-                  layout="total, prev, pager, next"
-                  :total="count">
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-size="20"
+                    layout="total, prev, pager, next"
+                    :total="count">
                 </el-pagination>
             </div>
             <el-dialog title="修改店铺信息" v-model="dialogFormVisible">
@@ -80,11 +95,11 @@
                     </el-form-item>
                     <el-form-item label="详细地址" label-width="100px">
                         <el-autocomplete
-                          v-model="address.address"
-                          :fetch-suggestions="querySearchAsync"
-                          placeholder="请输入地址"
-                          style="width: 100%;"
-                          @select="addressSelect"
+                            v-model="address.address"
+                            :fetch-suggestions="querySearchAsync"
+                            placeholder="请输入地址"
+                            style="width: 100%;"
+                            @select="addressSelect"
                         ></el-autocomplete>
                         <span>当前城市：{{city.name}}</span>
                     </el-form-item>
@@ -96,27 +111,28 @@
                     </el-form-item>
                     <el-form-item label="店铺分类" label-width="100px">
                         <el-cascader
-                          :options="categoryOptions"
-                          v-model="selectedCategory"
-                          change-on-select
+                            :options="categoryOptions"
+                            v-model="selectedCategory"
+                            change-on-select
                         ></el-cascader>
                     </el-form-item>
                     <el-form-item label="商铺图片" label-width="100px">
                         <el-upload
-                          class="avatar-uploader"
-                          :action="baseUrl + '/v1/addimg/shop'"
-                          :show-file-list="false"
-                          :on-success="handleServiceAvatarScucess"
-                          :before-upload="beforeAvatarUpload">
-                          <img v-if="selectTable.image_path" :src="baseImgPath + selectTable.image_path" class="avatar">
-                          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                            class="avatar-uploader"
+                            :action="baseUrl + '/v1/addimg/shop'"
+                            :show-file-list="false"
+                            :on-success="handleServiceAvatarScucess"
+                            :before-upload="beforeAvatarUpload">
+                            <img v-if="selectTable.image_path" :src="baseImgPath + selectTable.image_path"
+                                 class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
                     </el-form-item>
                 </el-form>
-              <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="updateShop">确 定</el-button>
-              </div>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="updateShop">确 定</el-button>
+                </div>
             </el-dialog>
         </div>
     </div>
@@ -124,10 +140,19 @@
 
 <script>
     import headTop from '../components/headTop'
-    import {baseUrl, baseImgPath} from '@/config/env'
-    import {cityGuess, getResturants, getResturantsCount, foodCategory, updateResturant, searchplace, deleteResturant} from '@/api/getData'
+    import {baseImgPath, baseUrl} from '@/config/env'
+    import {
+        cityGuess,
+        deleteResturant,
+        foodCategory,
+        getResturants,
+        getResturantsCount,
+        searchplace,
+        updateResturant
+    } from '@/api/getData'
+
     export default {
-        data(){
+        data() {
             return {
                 baseUrl,
                 baseImgPath,
@@ -144,29 +169,29 @@
                 address: {},
             }
         },
-        created(){
+        created() {
             this.initData();
         },
-    	components: {
-    		headTop,
-    	},
+        components: {
+            headTop,
+        },
         methods: {
-            async initData(){
-                try{
+            async initData() {
+                try {
                     this.city = await cityGuess();
                     const countData = await getResturantsCount();
                     if (countData.status == 1) {
                         this.count = countData.count;
-                    }else{
+                    } else {
                         throw new Error('获取数据失败');
                     }
                     this.getResturants();
-                }catch(err){
+                } catch (err) {
                     console.log('获取数据失败', err);
                 }
             },
-            async getCategory(){
-                try{
+            async getCategory() {
+                try {
                     const categories = await foodCategory();
                     categories.forEach(item => {
                         if (item.sub_categories.length) {
@@ -187,11 +212,11 @@
                             this.categoryOptions.push(addnew)
                         }
                     })
-                }catch(err){
+                } catch (err) {
                     console.log('获取商铺种类失败', err);
                 }
             },
-            async getResturants(){
+            async getResturants() {
                 const {latitude, longitude} = this.city;
                 const restaurants = await getResturants({latitude, longitude, offset: this.offset, limit: this.limit});
                 this.tableData = [];
@@ -214,7 +239,7 @@
             },
             handleCurrentChange(val) {
                 this.currentPage = val;
-                this.offset = (val - 1)*this.limit;
+                this.offset = (val - 1) * this.limit;
                 this.getResturants()
             },
             handleEdit(index, row) {
@@ -226,11 +251,11 @@
                     this.getCategory();
                 }
             },
-            addFood(index, row){
-                this.$router.push({ path: 'addGoods', query: { restaurant_id: row.id }})
+            addFood(index, row) {
+                this.$router.push({path: 'addGoods', query: {restaurant_id: row.id}})
             },
             async handleDelete(index, row) {
-                try{
+                try {
                     const res = await deleteResturant(row.id);
                     if (res.status == 1) {
                         this.$message({
@@ -238,10 +263,10 @@
                             message: '删除店铺成功'
                         });
                         this.tableData.splice(index, 1);
-                    }else{
+                    } else {
                         throw new Error(res.message)
                     }
-                }catch(err){
+                } catch (err) {
                     this.$message({
                         type: 'error',
                         message: err.message
@@ -251,7 +276,7 @@
             },
             async querySearchAsync(queryString, cb) {
                 if (queryString) {
-                    try{
+                    try {
                         const cityList = await searchplace(this.city.id, queryString);
                         if (cityList instanceof Array) {
                             cityList.map(item => {
@@ -260,19 +285,19 @@
                             })
                             cb(cityList)
                         }
-                    }catch(err){
+                    } catch (err) {
                         console.log(err)
                     }
                 }
             },
-            addressSelect(vale){
+            addressSelect(vale) {
                 const {address, latitude, longitude} = vale;
                 this.address = {address, latitude, longitude};
             },
             handleServiceAvatarScucess(res, file) {
                 if (res.status == 1) {
                     this.selectTable.image_path = res.image_path;
-                }else{
+                } else {
                     this.$message.error('上传图片失败！');
                 }
             },
@@ -288,9 +313,9 @@
                 }
                 return isRightType && isLt2M;
             },
-            async updateShop(){
+            async updateShop() {
                 this.dialogFormVisible = false;
-                try{
+                try {
                     Object.assign(this.selectTable, this.address);
                     this.selectTable.category = this.selectedCategory.join('/');
                     const res = await updateResturant(this.selectTable)
@@ -300,42 +325,64 @@
                             message: '更新店铺信息成功'
                         });
                         this.getResturants();
-                    }else{
+                    } else {
                         this.$message({
                             type: 'error',
                             message: res.message
                         });
                     }
-                }catch(err){
+                } catch (err) {
                     console.log('更新餐馆信息失败', err);
                 }
             },
+            getArticleList() {
+                let para = {
+                    page: 1,
+                    size: 10
+                };
+                var _this = this;
+                this.$ajax.post('apis/article/getAll?page=1&size=10').then(function (res) {
+                    // this.tableData = res.data;
+                    _this.tableData.category = res.data.category;
+                    console.log(res.data);
+                });
+
+            }
         },
+        mounted: function () {
+            this.getArticleList();
+        }
     }
 </script>
 
 <style lang="less">
-	@import '../style/mixin';
+    @import '../style/mixin';
+
     .demo-table-expand {
         font-size: 0;
     }
+
     .demo-table-expand label {
         width: 90px;
         color: #99a9bf;
     }
+
     .demo-table-expand .el-form-item {
         margin-right: 0;
         margin-bottom: 0;
         width: 50%;
     }
-    .table_container{
+
+    .table_container {
         padding: 20px;
     }
-    .Pagination{
+
+    .Pagination {
         display: flex;
         justify-content: flex-start;
         margin-top: 8px;
     }
+
     .avatar-uploader .el-upload {
         border: 1px dashed #d9d9d9;
         border-radius: 6px;
@@ -343,9 +390,11 @@
         position: relative;
         overflow: hidden;
     }
+
     .avatar-uploader .el-upload:hover {
         border-color: #20a0ff;
     }
+
     .avatar-uploader-icon {
         font-size: 28px;
         color: #8c939d;
@@ -354,6 +403,7 @@
         line-height: 120px;
         text-align: center;
     }
+
     .avatar {
         width: 120px;
         height: 120px;

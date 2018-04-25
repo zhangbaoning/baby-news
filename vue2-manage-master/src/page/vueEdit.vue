@@ -47,7 +47,8 @@
 		    submit(){
                 let article = {
                     title: this.title,
-                    content: this.content
+                    content: this.content,
+                    userId: sessionStorage.getItem('user')
                 };
                 this.$ajax.post('/apis/article/post', article);
                 console.log(this.content);

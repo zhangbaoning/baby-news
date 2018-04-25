@@ -52,8 +52,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article selectArticle(Article article){
-        List<Article> articleList =articleDao.select(article);
+    public Article selectArticle(Article article) {
+        List<Article> articleList = articleDao.select(article);
         return articleList.get(0);
     }
 
@@ -68,11 +68,18 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> selectArticleAll(int page, int size) {
 //        查询到所有的资讯
         List<Article> articleList = articleDao.selectAll();
+
+//        如果当查询到的数据小于一页的时候直接返回数据
+        if (articleList.size() <= size) {
+            return articleList;
+        } else {
 //        分页开始List标号
-        int articleListEnd = page * size - 1;
+            int articleListEnd = page * size - 1;
 //        分页结束List标号
-        int articleListStart = (page - 1) * size;
+            int articleListStart = (page - 1) * size;
 //        截取需要的分页资讯
-        return articleList.subList(articleListStart, articleListEnd);
+            return articleList.subList(articleListStart, articleListEnd);
+        }
+
     }
 }

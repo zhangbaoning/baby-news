@@ -73,6 +73,8 @@
                                     type: 'success',
                                     message: '登录成功'
                                 });
+                                // 将用户信息放在sessionStorage中
+                                sessionStorage.setItem('user', res.data.user);
                                 _this.$router.push('manage')
                             } else {
                                 _this.$message({

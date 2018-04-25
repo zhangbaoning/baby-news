@@ -100,7 +100,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/getAll", method = RequestMethod.POST)
     @ResponseBody
-    public List<Article> getArticleAll(int page, int size) {
+    public List<Article> getArticleAll(Integer page, Integer size) {
         List<Article> articleList = null;
         try {
             articleList = articleService.selectArticleAll(page, size);
