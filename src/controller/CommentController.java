@@ -27,7 +27,7 @@ public class CommentController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public void addComment(Comment comment, int articleId) {
+    public void addComment(Comment comment, String articleId) {
         // TODO 应该是评论关联资讯的ID
 //        通过资讯ID获取到资讯
         Article article = articleController.getArticle(articleId);

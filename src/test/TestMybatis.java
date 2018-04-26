@@ -30,7 +30,7 @@ public class TestMybatis {
         // System.out.println(user.getUserName());
         // logger.info("值："+user.getUserName());
         Article article = new Article();
-        article.setId(3);
+        article.setId("3");
         article.setTitle("baoning");
 //        article.setCategoryId("2");
 //        article.setClickCount("2");

@@ -5,36 +5,37 @@
             <el-table
                 :data="tableData"
                 style="width: 100%">
-                <el-table-column type="expand">
-                    <template scope="props">
-                        <el-form label-position="left" inline class="demo-table-expand">
-                            <el-form-item label="店铺名称">
-                                <span>{{ props.row.name }}</span>
-                            </el-form-item>
-                            <el-form-item label="店铺地址">
-                                <span>{{ props.row.address }}</span>
-                            </el-form-item>
-                            <el-form-item label="店铺介绍">
-                                <span>{{ props.row.description }}</span>
-                            </el-form-item>
-                            <el-form-item label="店铺 ID">
-                                <span>{{ props.row.id }}</span>
-                            </el-form-item>
-                            <el-form-item label="联系电话">
-                                <span>{{ props.row.phone }}</span>
-                            </el-form-item>
-                            <el-form-item label="评分">
-                                <span>{{ props.row.rating }}</span>
-                            </el-form-item>
-                            <el-form-item label="销售量">
-                                <span>{{ props.row.recent_order_num }}</span>
-                            </el-form-item>
-                            <el-form-item label="分类">
-                                <span>{{ props.row.category }}</span>
-                            </el-form-item>
-                        </el-form>
-                    </template>
-                </el-table-column>
+                <!--<el-table-column type="expand">
+                                    <template scope="props">
+                                        <el-form label-position="left" inline class="demo-table-expand">
+                                            <el-form-item label="店铺名称">
+                                                <span>{{ props.row.name }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="店铺地址">
+                                                <span>{{ props.row.address }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="店铺介绍">
+                                                <span>{{ props.row.description }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="店铺 ID">
+                                                <span>{{ props.row.id }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="联系电话">
+                                                <span>{{ props.row.phone }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="评分">
+                                                <span>{{ props.row.rating }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="销售量">
+                                                <span>{{ props.row.recent_order_num }}</span>
+                                            </el-form-item>
+                                            <el-form-item label="分类">
+                                                <span>{{ props.row.category }}</span>
+                                            </el-form-item>
+                                        </el-form>
+                                    </template>
+                                </el-table-column>-->
+                <el-form-item prop="id" v-if="false"/>
                 <el-form-item
                     label="分类"
                     prop="category">
@@ -256,16 +257,18 @@
             },
             async handleDelete(index, row) {
                 try {
-                    const res = await deleteResturant(row.id);
-                    if (res.status == 1) {
-                        this.$message({
-                            type: 'success',
-                            message: '删除店铺成功'
-                        });
-                        this.tableData.splice(index, 1);
-                    } else {
-                        throw new Error(res.message)
-                    }
+                    console.log(row.id);
+                    this.$ajax.post('apis/article/delete', row.id);
+                    this.getArticleList();
+                    // if (res.status == 1) {
+                    //     this.$message({
+                    //         type: 'success',
+                    //         message: '删除文章成功'
+                    //     });
+                    //     this.tableData.splice(index, 1);
+                    // } else {
+                    //     throw new Error(res.message)
+                    // }
                 } catch (err) {
                     this.$message({
                         type: 'error',
@@ -343,6 +346,7 @@
                 var _this = this;
                 this.$ajax.post('apis/article/getAll?page=1&size=10').then(function (res) {
                     // this.tableData = res.data;
+                    _this.tableData = res.data;
                     _this.tableData.category = res.data.category;
                     console.log(res.data);
                 });

@@ -45,7 +45,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public void deleteArticle(int articleId) {
+    public void deleteArticle(String articleId) {
         try {
             Article article = new Article();
             article.setId(articleId);
@@ -78,7 +78,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public Article getArticle(int articleId) {
+    public Article getArticle(String articleId) {
         Article article = null;
         try {
             article = new Article();
@@ -119,7 +119,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/addCategory", method = RequestMethod.POST)
     @ResponseBody
-    public void addCategoryForArticle(int categoryId, int articleId) {
+    public void addCategoryForArticle(int categoryId, String articleId) {
 //        通过资讯ID查询到资讯实体
         Article article = this.getArticle(articleId);
 //         设置分类类型

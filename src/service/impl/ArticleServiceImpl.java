@@ -31,7 +31,8 @@ public class ArticleServiceImpl implements ArticleService {
     public void insertArticle(Article article) throws Exception {
 
 //        生成新的主键
-        article.setId(UUID.randomUUID().hashCode());
+        article.setId(UUID.randomUUID().toString()
+                .replace("-", "").substring(0, 16));
 
 //        设置发布时间为当前时间
         Date nowDate = new Date();
