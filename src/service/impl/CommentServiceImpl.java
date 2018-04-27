@@ -5,6 +5,9 @@ import entity.Comment;
 import org.springframework.stereotype.Service;
 import service.CommentService;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
  * @Description
  * @Author zhangbaoning
@@ -17,7 +20,10 @@ public class CommentServiceImpl implements CommentService {
      *
      * @param comment
      */
+    @Resource
     private CommentDao commentDao;
+
+    @Override
     public void insertComment(Comment comment) {
         commentDao.insert(comment);
     }
@@ -27,6 +33,7 @@ public class CommentServiceImpl implements CommentService {
      *
      * @param comment
      */
+    @Override
     public void deleteComment(Comment comment) {
         commentDao.delete(comment);
 
@@ -37,6 +44,7 @@ public class CommentServiceImpl implements CommentService {
      *
      * @param comment
      */
+    @Override
     public void updateComment(Comment comment) {
         commentDao.updateByPrimaryKey(comment);
 
@@ -48,8 +56,20 @@ public class CommentServiceImpl implements CommentService {
      * @param comment
      * @return
      */
+    @Override
     public Comment selectComment(Comment comment) {
         commentDao.select(comment);
         return null;
+    }
+
+    /**
+     * 查询所有的评论
+     *
+     * @return
+     */
+    @Override
+    public List<Comment> selectAllComment() {
+        List<Comment> commentList = commentDao.selectAll();
+        return commentList;
     }
 }

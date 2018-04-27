@@ -949,7 +949,7 @@
     </column>
     <column id="239" parent="232" name="content">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>blob|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="240" parent="232" name="click_count">
@@ -1001,7 +1001,7 @@
     </key>
     <column id="249" parent="234" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>varchar(32)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="250" parent="234" name="content">
@@ -1009,59 +1009,64 @@
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="234" name="username">
+    <column id="251" parent="234" name="nickname">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="234" name="date_publish">
+    <column id="252" parent="234" name="publish_time">
       <Position>4</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>timestamp|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="235" name="id">
+    <column id="253" parent="234" name="article_id">
+      <Position>5</Position>
+      <DataType>varchar(32)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="235" name="username">
+    <column id="255" parent="235" name="username">
       <Position>2</Position>
       <Comment>账号</Comment>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="235" name="password">
+    <column id="256" parent="235" name="password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="235" name="nickname">
+    <column id="257" parent="235" name="nickname">
       <Position>4</Position>
       <Comment>网名</Comment>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="235" name="mobile">
+    <column id="258" parent="235" name="mobile">
       <Position>5</Position>
       <Comment>电话</Comment>
       <DataType>varchar(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="235" name="date_joined">
+    <column id="259" parent="235" name="date_joined">
       <Position>6</Position>
       <Comment>创建时间</Comment>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="235" name="role_id">
+    <column id="260" parent="235" name="role_id">
       <Position>7</Position>
       <Comment>外键角色id</Comment>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="260" parent="235" name="PRIMARY">
+    <key id="261" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

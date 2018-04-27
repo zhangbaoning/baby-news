@@ -2,6 +2,8 @@ package service;
 
 import entity.Comment;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author zhangbaoning
@@ -38,4 +40,11 @@ public interface CommentService {
      */
 
     Comment selectComment(Comment comment);
+
+    /**
+     * 查询所有的评论
+     *
+     * @return
+     */
+    List<Comment> selectAllComment();
 }

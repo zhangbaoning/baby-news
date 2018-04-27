@@ -3,23 +3,25 @@ package entity;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 public class Comment {
-    private Integer id;
+    @Id
+    private String id;
     private String content;
-    private String username;
-    private Timestamp datePublish;
+    private String nickname;
+    private Timestamp publishTime;
+    private String articleId;
 
     @Basic
     @Column(name = "id", nullable = true)
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -33,40 +35,39 @@ public class Comment {
         this.content = content;
     }
 
-    @Basic
-    @Column(name = "username", nullable = true, length = 255)
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     @Basic
-    @Column(name = "date_publish", nullable = true)
-    public Timestamp getDatePublish() {
-        return datePublish;
+    @Column(name = "nickname", nullable = true, length = 255)
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setDatePublish(Timestamp datePublish) {
-        this.datePublish = datePublish;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) &&
-                Objects.equals(content, comment.content) &&
-                Objects.equals(username, comment.username) &&
-                Objects.equals(datePublish, comment.datePublish);
+
+    @Basic
+    @Column(name = "publish_date", nullable = true)
+
+    public Timestamp getPublishTime() {
+        return publishTime;
     }
 
-    @Override
-    public int hashCode() {
+    public void setPublishTime(Timestamp publishTime) {
+        this.publishTime = publishTime;
+    }
 
-        return Objects.hash(id, content, username, datePublish);
+
+
+
+    @Basic
+    @Column(name = "article_id", nullable = true)
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 }
