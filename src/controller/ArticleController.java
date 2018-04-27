@@ -62,7 +62,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public void updateArticle(Article article) {
+    public void updateArticle(@RequestBody Article article) {
         try {
             articleService.updateArticle(article);
         } catch (Exception e) {

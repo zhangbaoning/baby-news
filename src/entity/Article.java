@@ -1,5 +1,7 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -72,6 +74,8 @@ public class Article {
 
     @Basic
     @Column(name = "date_publish", nullable = true)
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Timestamp getDatePublish() {
         return datePublish;
     }

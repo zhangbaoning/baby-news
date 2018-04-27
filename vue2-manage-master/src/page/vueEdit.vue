@@ -25,6 +25,7 @@
     export default {
         data() {
             return {
+                id: '',
                 content: '',
                 title: '',
                 editorOption: {}
@@ -43,19 +44,26 @@
             onEditorReady(editor) {
                 console.log('editor ready!', editor)
             },
+            // 提交
             submit() {
                 let article = {
+                    id: this.id,
                     title: this.title,
                     content: this.content,
                     userId: sessionStorage.getItem('user')
                 };
-                this.$ajax.post('/apis/article/post', article);
-                console.log(this.content);
-                this.$message.success('提交成功！');
+                // 如果ID存在的话进行更新，不存在的话进行新建
+                if (this.id) {
+                    this.$ajax.post('/apis/article/update', article);
+                    this.$message.success('更新成功！');
+                } else {
+                    console.log('id不存在');
+                    this.$ajax.post('/apis/article/post', article);
+                    this.$message.success('提交成功！');
+                }
             },
+            // 从文章管理跳转加载文章
             getArticle() {
-                console.log('执行');
-                console.log(this.$route);
                 if (this.$route.query !== undefined) {
                     console.log(this.$route.query.article_id);
                     if (this.$route.query.article_id !== undefined) {

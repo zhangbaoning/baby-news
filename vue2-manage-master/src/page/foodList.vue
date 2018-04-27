@@ -41,18 +41,19 @@
                     </el-form>
                   </template>
                 </el-table-column>
+                <el-table-column prop="id"/>
                 <el-table-column
-                  label="食品名称"
-                  prop="name">
+                    label="分类名称"
+                    prop="name">
                 </el-table-column>
                 <el-table-column
-                  label="食品介绍"
-                  prop="description">
+                    label="分类介绍"
+                    prop="description">
                 </el-table-column>
-                <el-table-column
-                  label="评分"
-                  prop="rating">
-                </el-table-column>
+                <!--<el-table-column-->
+                <!--label="评分"-->
+                <!--prop="rating">-->
+                <!--</el-table-column>-->
                 <el-table-column label="操作" width="160">
                   <template scope="scope">
                     <el-button
@@ -123,7 +124,7 @@
 					      label="价格">
 					    </el-table-column>
 					    <el-table-column label="操作" >
-					    <template scope="scope"> 
+                            <template scope="scope">
 					        <el-button
 					          size="small"
 					          type="danger"
@@ -138,8 +139,8 @@
                 <el-button type="primary" @click="updateFood">确 定</el-button>
               </div>
             </el-dialog>
-			
-           
+
+
             <el-dialog title="添加规格" v-model="specsFormVisible">
 			  	<el-form :rules="specsFormrules" :model="specsForm">
 				    <el-form-item label="规格" label-width="100px" prop="specs">
@@ -163,8 +164,17 @@
 
 <script>
     import headTop from '../components/headTop'
-    import {baseUrl, baseImgPath} from '@/config/env'
-    import {getFoods, getFoodsCount, getMenu, updateFood, deleteFood, getResturantDetail, getMenuById} from '@/api/getData'
+    import {baseImgPath, baseUrl} from '@/config/env'
+    import {
+        deleteFood,
+        getFoods,
+        getFoodsCount,
+        getMenu,
+        getMenuById,
+        getResturantDetail,
+        updateFood
+    } from '@/api/getData'
+
     export default {
         data(){
             return {
@@ -309,10 +319,10 @@
                 this.selectTable = {...row, ...{restaurant_name: restaurant.name, restaurant_address: restaurant.address, category_name: category.name}};
 
                 this.selectMenu = {label: category.name, value: row.category_id}
-                this.tableData.splice(row.index, 1, {...this.selectTable}); 
+                this.tableData.splice(row.index, 1, {...this.selectTable});
                 this.$nextTick(() => {
                     this.expendRow.push(row.index);
-                })  
+                })
                 if (type == 'edit' && this.restaurant_id != row.restaurant_id) {
                 	this.getMenu();
                 }
