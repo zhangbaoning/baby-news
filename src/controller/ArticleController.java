@@ -78,16 +78,14 @@ public class ArticleController {
      */
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public Article getArticle(String articleId) {
-        Article article = null;
+    public Article getArticle(@RequestBody Article article) {
+        Article articleResp = null;
         try {
-            article = new Article();
-            article.setId(articleId);
-            articleService.selectArticle(article);
+            articleResp = articleService.selectArticle(article);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return article;
+        return articleResp;
 
     }
 
@@ -121,7 +119,8 @@ public class ArticleController {
     @ResponseBody
     public void addCategoryForArticle(int categoryId, String articleId) {
 //        通过资讯ID查询到资讯实体
-        Article article = this.getArticle(articleId);
+//        Article article = this.getArticle(articleId);
+        Article article = this.getArticle(new Article());
 //         设置分类类型
 //        TODO 分类ID需要去调整
         article.setCategoryId(categoryId);

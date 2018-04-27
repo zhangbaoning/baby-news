@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 public class Article {
+    @Id
     private String id;
     private String title;
     private String descr;
@@ -20,7 +21,6 @@ public class Article {
     private Timestamp dateModified;
 
 
-    @Id
     @Column(name = "id", nullable = false)
     public String getId() {
         return id;

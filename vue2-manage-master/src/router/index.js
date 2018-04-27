@@ -49,7 +49,7 @@ const routes = [
 		},{
 			path: '/shopList',
 			component: shopList,
-			meta: ['数据管理', '商家列表'],
+            meta: ['数据管理', '资讯列表'],
 		},{
 			path: '/foodList',
 			component: foodList,

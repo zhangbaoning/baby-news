@@ -244,16 +244,8 @@
                 this.getResturants()
             },
             handleEdit(index, row) {
-                this.selectTable = row;
-                this.address.address = row.address;
-                this.dialogFormVisible = true;
-                this.selectedCategory = row.category.split('/');
-                if (!this.categoryOptions.length) {
-                    this.getCategory();
-                }
-            },
-            addFood(index, row) {
-                this.$router.push({path: 'addGoods', query: {restaurant_id: row.id}})
+                this.$router.push({path: 'vueEdit', query: {article_id: row.id}});
+
             },
             async handleDelete(index, row) {
                 try {

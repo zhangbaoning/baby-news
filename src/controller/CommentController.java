@@ -30,7 +30,9 @@ public class CommentController {
     public void addComment(Comment comment, String articleId) {
         // TODO 应该是评论关联资讯的ID
 //        通过资讯ID获取到资讯
-        Article article = articleController.getArticle(articleId);
+//        Article article = articleController.getArticle(articleId);
+        // FIXME
+        Article article = articleController.getArticle(new Article());
 //        将评论进行保存
         commentDao.insert(comment);
 //        获取到保存之后的评论Id

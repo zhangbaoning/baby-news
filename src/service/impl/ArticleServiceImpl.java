@@ -54,8 +54,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article selectArticle(Article article) {
-        List<Article> articleList = articleDao.select(article);
-        return articleList.get(0);
+        Article getArticle = articleDao.selectByPrimaryKey(article);
+//        List<Article> articleList = articleDao.select(article);
+//        return articleList.get(0);
+        return getArticle;
     }
 
     /**

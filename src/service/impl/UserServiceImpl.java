@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
+    @Override
     public int insertUser(User user) {
         return userDao.insert(user);
 
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
+    @Override
     public void deleteUser(User user) {
         userDao.delete(user);
 
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
+    @Override
     public void updateUser(User user) {
         userDao.updateByPrimaryKey(user);
     }
@@ -57,8 +60,8 @@ public class UserServiceImpl implements UserService {
      * @param user
      * @return
      */
+    @Override
     public User selectUser(User user) {
-//       return userDao.s;
         List<User> userList = null;
         try {
             Example example = new Example(User.class);
@@ -76,6 +79,7 @@ public class UserServiceImpl implements UserService {
      *
      * @return 用户集合
      */
+    @Override
     public List<User> getAll() {
         return userDao.selectAll();
     }
