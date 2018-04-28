@@ -27,22 +27,35 @@
                 <!--</el-form>-->
                 <!--</template>-->
                 <!--</el-table-column>-->
-			    <el-table-column
+                <el-table-column
+                    prop="id"
+                    v-if="false"
+                />
+                <el-table-column
                     label="文章名"
                     prop="article">
-			    </el-table-column>
+                </el-table-column>
                 <el-table-column
                     label="评论人"
                     prop="nickname"/>
-			    <el-table-column
+                <el-table-column
                     label="评论"
                     prop="comment">
-			    </el-table-column>
-			    <el-table-column
+                </el-table-column>
+                <el-table-column
                     label="发布时间"
                     prop="publishTime">
-			    </el-table-column>
-			</el-table>
+                </el-table-column>
+                <el-table-column label="操作" width="200">
+                    <template scope="scope">
+                        <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleDelete(scope.$index, scope.row)">删除
+                        </el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
             <div class="Pagination" style="text-align: left;margin-top: 10px;">
                 <el-pagination
                     @size-change=""
@@ -61,8 +74,9 @@
     import headTop from '../components/headTop'
     // import {getOrderList, getOrderCount, getResturantDetail, getUserInfo, getAddressById} from '@/api/getData'
     export default {
-        data(){
+        data() {
             return {
+                id: '',
                 tableData: [],
                 currentRow: null,
                 offset: 0,
@@ -73,9 +87,9 @@
                 expendRow: [],
             }
         },
-    	components: {
-    		headTop,
-    	},
+        components: {
+            headTop,
+        },
         // created(){
         // 	this.restaurant_id = this.$route.query.restaurant_id;
         //     this.initData();
@@ -140,6 +154,12 @@
                 this.$ajax.post('apis/comment/getAll').then(function (res) {
                     _this.tableData = res.data;
                 })
+            },
+            handleDelete(index, row) {
+                let comment = {
+                    id: row.id
+                };
+                this.$ajax.post('apis/comment/delete', comment);
             }
         },
         mounted: function () {
@@ -149,20 +169,24 @@
 </script>
 
 <style lang="less">
-	@import '../style/mixin';
-    .table_container{
+    @import '../style/mixin';
+
+    .table_container {
         padding: 20px;
     }
+
     .demo-table-expand {
-	    font-size: 0;
-	}
-	.demo-table-expand label {
-	    width: 90px;
-	    color: #99a9bf;
-	}
-	.demo-table-expand .el-form-item {
-	    margin-right: 0;
-	    margin-bottom: 0;
-	    width: 50%;
-	}
+        font-size: 0;
+    }
+
+    .demo-table-expand label {
+        width: 90px;
+        color: #99a9bf;
+    }
+
+    .demo-table-expand .el-form-item {
+        margin-right: 0;
+        margin-bottom: 0;
+        width: 50%;
+    }
 </style>
