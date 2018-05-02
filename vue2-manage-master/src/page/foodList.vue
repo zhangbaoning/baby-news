@@ -40,28 +40,21 @@
                     :total="count">
                 </el-pagination>
             </div>
-            <el-dialog title="修改食品信息" v-model="dialogFormVisible">
+            <el-dialog title="修改分类信息" v-model="dialogFormVisible">
                 <el-form :model="selectTable">
-                    <el-form-item label="食品名称" label-width="100px">
+                    <el-form-item label="分类id" label-width="100px">
+                        <el-input v-model="selectTable.id" auto-complete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="分类名称" label-width="100px">
                         <el-input v-model="selectTable.name" auto-complete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="食品介绍" label-width="100px">
+                    <el-form-item label="分类介绍" label-width="100px">
                         <el-input v-model="selectTable.description"></el-input>
-                    </el-form-item>
-                    <el-form-item label="食品分类" label-width="100px">
-                        <el-select v-model="selectIndex" :placeholder="selectMenu.label">
-                            <el-option
-                                v-for="item in menuOptions"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.index">
-                            </el-option>
-                        </el-select>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="updateFood">确 定</el-button>
+                    <el-button type="primary" @click="updateCategory">确 定</el-button>
                 </div>
             </el-dialog>
 
@@ -153,14 +146,27 @@
             headTop,
         },
         methods: {
+            // 更新分类
+            updateCategory() {
+                console.log(this.selectTable);
+                var para = {
+                    id: this.selectTable.id,
+                    name: this.selectTable.name
+                };
+                this.$ajax.post('apis/category/update', para);
+                // this.$ajax.post('apis/category/update', this.selectTable);
+            },
+            // 编辑分类
+            handleEdit(row) {
+                console.log(row);
+                this.selectTable = row;
+                this.dialogFormVisible = true;
+            },
+            // 删除分类
             handleDelete(index, row) {
-                console.log('删除');
-                console.log(row.id);
-                // var para = {
-                //     id: row.id
-                // }
                 this.$ajax.get('apis/category/delete', {params: {id: row.id}});
             },
+            // 初始化数据，得到全部分类
             initData() {
                 var _this = this;
                 this.$ajax.post('apis/category/getAll').then(function (res) {

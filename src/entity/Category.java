@@ -8,10 +8,10 @@ import java.util.Objects;
 
 @Entity
 public class Category {
+    @Id
     private int id;
     private String name;
 
-    @Id
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -33,8 +33,12 @@ public class Category {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Category category = (Category) o;
         return id == category.id &&
                 Objects.equals(name, category.name);

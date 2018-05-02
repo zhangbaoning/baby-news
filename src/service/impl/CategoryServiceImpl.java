@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     public void updateCategory(Category category) {
-        categoryDao.updateByPrimaryKey(category);
+        categoryDao.updateByPrimaryKeySelective(category);
 
     }
 
