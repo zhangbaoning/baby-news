@@ -156,6 +156,10 @@
             handleDelete(index, row) {
                 console.log('删除');
                 console.log(row.id);
+                // var para = {
+                //     id: row.id
+                // }
+                this.$ajax.get('apis/category/delete', {params: {id: row.id}});
             },
             initData() {
                 var _this = this;
