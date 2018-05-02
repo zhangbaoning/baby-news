@@ -1,0 +1,1 @@
+INSERT INTO baby_news.comment (id, content, nickname, article_id) VALUES ('1', '你好啊', 'fsfsf',  'e882634c5f3b445c');

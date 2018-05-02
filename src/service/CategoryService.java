@@ -2,6 +2,8 @@ package service;
 
 import entity.Category;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author zhangbaoning
@@ -38,4 +40,11 @@ public interface CategoryService {
      */
 
     Category selectCategory(Category category);
+
+    /**
+     * 查询所有的分类
+     *
+     * @return 分类集合
+     */
+    List<Category> selectAllCategory();
 }
