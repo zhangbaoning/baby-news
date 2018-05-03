@@ -41,15 +41,30 @@ public class CategoryController {
     @ResponseBody
     public void deleteCategoryById(@RequestParam String id) {
         Category category = new Category();
-        category.setId(Integer.parseInt(id));
+        category.setId(id);
         categoryService.deleteCategory(category);
     }
 
+    /**
+     * 对分类编辑进行更新
+     *
+     * @param category 更改过的分类
+     */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public void updateArticle(@RequestBody Category category) {
         try {
             categoryService.updateCategory(category);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public void addArticle(@RequestBody Category category) {
+        try {
+            categoryService.insertCategory(category);
         } catch (Exception e) {
             e.printStackTrace();
         }

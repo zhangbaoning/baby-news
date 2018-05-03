@@ -2,6 +2,9 @@
     <div class="fillcontain">
         <head-top></head-top>
         <div class="table_container">
+            <el-button
+                type="primary" @click="addCategory()">新增
+            </el-button>
             <el-table
                 :data="tableData"
                 style="width: 100%">
@@ -59,21 +62,18 @@
             </el-dialog>
 
 
-            <el-dialog title="添加规格" v-model="specsFormVisible">
-                <el-form :rules="specsFormrules" :model="specsForm">
-                    <el-form-item label="规格" label-width="100px" prop="specs">
-                        <el-input v-model="specsForm.specs" auto-complete="off"></el-input>
+            <el-dialog title="添加分类" v-model="addFormVisible">
+                <el-form :model="selectTable">
+                    <el-form-item label="分类名称" label-width="100px">
+                        <el-input v-model="selectTable.name" auto-complete="off"></el-input>
                     </el-form-item>
-                    <el-form-item label="包装费" label-width="100px">
-                        <el-input-number v-model="specsForm.packing_fee" :min="0" :max="100"></el-input-number>
-                    </el-form-item>
-                    <el-form-item label="价格" label-width="100px">
-                        <el-input-number v-model="specsForm.price" :min="0" :max="10000"></el-input-number>
+                    <el-form-item label="分类介绍" label-width="100px">
+                        <el-input v-model="selectTable.description"></el-input>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="specsFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="">确 定</el-button>
+                    <el-button type="primary" @click="addCategoryConfirm()">确 定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -96,6 +96,7 @@
     export default {
         data() {
             return {
+                addFormVisible: false, // 新增页面显示
                 baseUrl,
                 baseImgPath,
                 restaurant_id: null,
@@ -146,6 +147,17 @@
             headTop,
         },
         methods: {
+            // 添加分类提交
+            addCategoryConfirm() {
+                console.log('222222222222221111222');
+                console.log(this.selectTable);
+                this.$ajax.post('apis/category/add', this.selectTable);
+            },
+            // 添加分类页面
+            addCategory() {
+                this.addFormVisible = true;
+                this.$ajax.post('apis/category/update', this.selectTable);
+            },
             // 更新分类
             updateCategory() {
                 console.log(this.selectTable);

@@ -7,6 +7,7 @@ import service.CategoryService;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Description
@@ -26,6 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
      */
     @Override
     public void insertCategory(Category category) {
+        category.setId(UUID.randomUUID().toString()
+                .replace("-", "").substring(0, 16));
         categoryDao.insert(category);
     }
 
