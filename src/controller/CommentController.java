@@ -1,6 +1,5 @@
 package controller;
 
-import dao.CommentDao;
 import dto.CommentRespDTO;
 import entity.Article;
 import entity.Comment;
@@ -21,7 +20,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
-    private CommentDao commentDao;
     @Autowired
     private ArticleService articleService;
     @Autowired
@@ -30,21 +28,21 @@ public class CommentController {
     /**
      * 为资讯添加评论
      *
-     * @param comment
-     * @param articleId
+     * @param comment 评论
+     *
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public void addComment(Comment comment, String articleId) {
+    public void addComment(@RequestBody Comment comment) {
         // TODO 应该是评论关联资讯的ID
 //        通过资讯ID获取到资讯
 //        Article article = articleController.getArticle(articleId);
         // FIXME
 //        Article article = articleController.getArticle(new Article());
 //        将评论进行保存
-        commentDao.insert(comment);
+        commentService.insertComment(comment);
 //        获取到保存之后的评论Id
-        comment = commentDao.select(comment).get(0);
+//        comment = commentDao.select(comment).get(0);
 //        article.setCategoryId(comment.getId());
 //        articleController.updateArticle(article);
 

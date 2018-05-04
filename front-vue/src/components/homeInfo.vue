@@ -29,9 +29,9 @@
     <br>
     <div class="comment">
       <h3>发表评论</h3>
-      <textarea placeholder="请输入要评论的内容（最多评论120字）" maxlength="120"></textarea>
+      <textarea v-model="inputComment" placeholder="请输入要评论的内容（最多评论120字）" maxlength="120"></textarea>
       <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
-      <div class="comm_list" v-for="comment in commentsData">
+      <div class="comm_list" v-for="(comment,index) in commentsData">
         <div class="comment">
           <div class="comment-top">
             <div class="avatar">
@@ -42,7 +42,7 @@
           </div>
         </div>
         <p>{{comment.content}}</p>
-        <span class="meta">18楼 · 03.31 20:11</span>
+        <span class="meta">{{index+1}}楼 · {{comment.publishTime}}</span>
       </div>
 
     </div>
@@ -54,10 +54,21 @@
     data() {
       return {
         articleData: {},
-        commentsData: []
+        commentsData: [],
+        inputComment: ''
       }
     },
     methods: {
+      // 发布评论
+      postComment() {
+        let comment = {
+          content: this.inputComment,
+          articleId: this.$route.params.id,
+          nickname: 'zbn'
+        };
+        this.$ajax.post('apis/comment/add', comment);
+
+      },
       // 获取文章详情
       getArticleDetail() {
         console.log('文章详情');

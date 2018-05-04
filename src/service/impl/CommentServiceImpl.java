@@ -4,8 +4,10 @@ import dao.CommentDao;
 import entity.Comment;
 import org.springframework.stereotype.Service;
 import service.CommentService;
+import utils.UUIDUtils;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -25,6 +27,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void insertComment(Comment comment) {
+        comment.setId(UUIDUtils.getId());
+        comment.setPublishTime(new Timestamp(System.currentTimeMillis()));
         commentDao.insert(comment);
     }
 
