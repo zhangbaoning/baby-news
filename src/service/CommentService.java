@@ -33,13 +33,13 @@ public interface CommentService {
     void updateComment(Comment comment);
 
     /**
-     * 查询
+     * 通过文章ID查询评论
      *
-     * @param comment
+     * @param articleId 文章ID
      * @return
      */
 
-    Comment selectComment(Comment comment);
+    List<Comment> selectCommentsById(String articleId);
 
     /**
      * 查询所有的评论

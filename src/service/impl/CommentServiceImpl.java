@@ -51,16 +51,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     /**
-     * 查询
+     * 通过文章ID查询评论
      *
-     * @param comment
+     * @param articleId 文章ID
      * @return
      */
     @Override
-    public Comment selectComment(Comment comment) {
-        commentDao.select(comment);
-        return null;
+    public List<Comment> selectCommentsById(String articleId) {
+        Comment comment = new Comment();
+        comment.setArticleId(articleId);
+        List<Comment> commentList = commentDao.select(comment);
+        return commentList;
     }
+
 
     /**
      * 查询所有的评论

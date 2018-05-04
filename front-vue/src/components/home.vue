@@ -5,20 +5,8 @@
     <!-- 导航栏 -->
     <div class="banner">
       <div class="scroll">
-        <a class="control-item active">
-          最新
-        </a>
-        <a class="control-item">
-          最热
-        </a>
-        <a class="control-item">
-          早教
-        </a>
-        <a class="control-item">
-          婴儿
-        </a>
-        <a class="control-item">
-          儿童
+        <a class="control-item active" v-for="category in categories">
+          {{category.name}}
         </a>
       </div>
 
@@ -44,10 +32,19 @@
     name: 'home',
     data() {
       return {
-        articlesData: []
+        articlesData: [],
+        categories: []
       };
     },
     methods: {
+      // 获取分类
+      getCategory() {
+        var _this = this;
+        this.$ajax.post('apis/category/getAll').then(function (res) {
+          _this.categories = res.data;
+          console.log(res);
+        })
+      },
       // 获取所有的文章列表
       getAllArticle() {
         var _this = this;
@@ -60,6 +57,7 @@
     },
     mounted() {
       this.getAllArticle();
+      this.getCategory();
     }
   };
 </script>

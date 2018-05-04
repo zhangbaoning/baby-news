@@ -31,7 +31,7 @@
       <h3>发表评论</h3>
       <textarea placeholder="请输入要评论的内容（最多评论120字）" maxlength="120"></textarea>
       <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
-      <div class="comm_list">
+      <div class="comm_list" v-for="comment in commentsData">
         <div class="comment">
           <div class="comment-top">
             <div class="avatar">
@@ -41,7 +41,7 @@
             <div class="name">萤火虫</div>
           </div>
         </div>
-        <p>一言以蔽之：坚持沉稳地做有价值的事情，慢慢等待时间的回报。</p>
+        <p>{{comment.content}}</p>
         <span class="meta">18楼 · 03.31 20:11</span>
       </div>
 
@@ -53,10 +53,12 @@
     name: "homeInfo",
     data() {
       return {
-        articleData: {}
+        articleData: {},
+        commentsData: []
       }
     },
     methods: {
+      // 获取文章详情
       getArticleDetail() {
         console.log('文章详情');
         console.log(this.$route.params.id);
@@ -66,10 +68,19 @@
             console.log(res);
             _this.articleData = res.data;
           })
+      },
+      // 获取文章评论
+      getComments() {
+        var _this = this;
+        this.$ajax.get('apis/comment/getById', {params: {articleId: this.$route.params.id}})
+          .then(function (res) {
+            _this.commentsData = res.data;
+          })
       }
     },
     mounted() {
-      this.getArticleDetail()
+      this.getArticleDetail();
+      this.getComments();
     }
   };
 </script>

@@ -6,10 +6,7 @@ import entity.Article;
 import entity.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.ArticleService;
 import service.CommentService;
 
@@ -80,9 +77,26 @@ public class CommentController {
         return respList;
     }
 
+    /**
+     * 删除评论
+     *
+     * @param comment 封装ID了的评论实体
+     */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public void deleteComment(@RequestBody Comment comment) {
         commentService.deleteComment(comment);
+    }
+
+    /**
+     * 通过文章ID查询评论
+     *
+     * @param articleId 文章ID
+     */
+    @RequestMapping(value = "/getById", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Comment> getCommentById(@RequestParam String articleId) {
+        List<Comment> commentList = commentService.selectCommentsById(articleId);
+        return commentList;
     }
 }
