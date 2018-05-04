@@ -93,50 +93,6 @@
             headTop,
         },
         methods: {
-            async getCategory() {
-                try {
-                    const categories = await foodCategory();
-                    categories.forEach(item => {
-                        if (item.sub_categories.length) {
-                            const addnew = {
-                                value: item.name,
-                                label: item.name,
-                                children: []
-                            }
-                            item.sub_categories.forEach((subitem, index) => {
-                                if (index == 0) {
-                                    return
-                                }
-                                addnew.children.push({
-                                    value: subitem.name,
-                                    label: subitem.name,
-                                })
-                            })
-                            this.categoryOptions.push(addnew)
-                        }
-                    })
-                } catch (err) {
-                    console.log('获取商铺种类失败', err);
-                }
-            },
-            async getResturants() {
-                const {latitude, longitude} = this.city;
-                const restaurants = await getResturants({latitude, longitude, offset: this.offset, limit: this.limit});
-                this.tableData = [];
-                restaurants.forEach(item => {
-                    const tableData = {};
-                    tableData.name = item.name;
-                    tableData.address = item.address;
-                    tableData.description = item.description;
-                    tableData.id = item.id;
-                    tableData.phone = item.phone;
-                    tableData.rating = item.rating;
-                    tableData.recent_order_num = item.recent_order_num;
-                    tableData.category = item.category;
-                    tableData.image_path = item.image_path;
-                    this.tableData.push(tableData);
-                })
-            },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },
@@ -177,7 +133,7 @@
                     size: 10
                 };
                 var _this = this;
-                this.$ajax.post('apis/article/getAll?page=1&size=10').then(function (res) {
+                this.$ajax.get('apis/article/getAll').then(function (res) {
                     // this.tableData = res.data;
                     _this.tableData = res.data;
                     _this.tableData.category = res.data.category;

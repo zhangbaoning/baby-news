@@ -3,10 +3,7 @@ package controller;
 import entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.ArticleService;
 
 import java.util.List;
@@ -76,12 +73,14 @@ public class ArticleController {
      * @param articleId 资讯ID
      * @return
      */
-    @RequestMapping(value = "/get", method = RequestMethod.POST)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
-    public Article getArticle(@RequestBody Article article) {
+    public Article getArticle(@RequestParam String articleId) {
         Article articleResp = null;
         try {
-            articleResp = articleService.selectArticle(article);
+            Article articleReq = new Article();
+            articleReq.setId(articleId);
+            articleResp = articleService.selectArticle(articleReq);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -96,9 +95,11 @@ public class ArticleController {
      * @param size
      * @return
      */
-    @RequestMapping(value = "/getAll", method = RequestMethod.POST)
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
-    public List<Article> getArticleAll(Integer page, Integer size) {
+    public List<Article> getArticleAll() {
+        Integer page = 1;
+        Integer size = 10;
         List<Article> articleList = null;
         try {
             articleList = articleService.selectArticleAll(page, size);
@@ -119,8 +120,8 @@ public class ArticleController {
     @ResponseBody
     public void addCategoryForArticle(int categoryId, String articleId) {
 //        通过资讯ID查询到资讯实体
-//        Article article = this.getArticle(articleId);
-        Article article = this.getArticle(new Article());
+        Article article = this.getArticle(articleId);
+//        Article article = this.getArticle(new Article());
 //         设置分类类型
 //        TODO 分类ID需要去调整
         article.setCategoryId(categoryId);

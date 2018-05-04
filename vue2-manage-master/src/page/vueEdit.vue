@@ -71,7 +71,7 @@
                             id: this.$route.query.article_id
                         };
                         var _this = this;
-                        this.$ajax.post('apis/article/get', article).then(function (res) {
+                        this.$ajax.get('apis/article/get', {params: {articleId: this.$route.query.article_id}}).then(function (res) {
                             console.log(res.data);
                             console.log(res.data.title);
                             _this.title = res.data.title;

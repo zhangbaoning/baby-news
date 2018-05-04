@@ -986,7 +986,7 @@
     </column>
     <column id="250" parent="233" name="content">
       <Position>4</Position>
-      <DataType>blob|0s</DataType>
+      <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="251" parent="233" name="click_count">
