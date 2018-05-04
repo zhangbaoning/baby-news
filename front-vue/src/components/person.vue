@@ -3,31 +3,31 @@
     <mt-header class='mint-header' title='亲，欢迎登陆'></mt-header>
     <form class="mui-input-group">
       <div class="login-way">
-        <span :class="[{'active':flag}]" @click='flag=true'>短信登录</span>
+        <!--<span :class="[{'active':flag}]" @click='flag=true'>短信登录</span>-->
         <span :class="[{'active':!flag}]" @click='flag=false'>密码登录</span>
       </div>
       <div class="mui-input-row" v-show='!flag'>
         <label>用户名：</label>
-        <input type="text" placeholder="请输入用户名" name='min' v-model='uname'>
+        <input type="text" placeholder="请输入用户名" name='min' v-model='username'>
       </div>
-      <div class="mui-input-row loginByphone" v-show='flag'>
-        <label>手机号：</label>
-        <input type="text" placeholder="请输入手机号" name='regex'>
-        <span class="getCode">获取验证码</span>
-      </div>
+      <!--<div class="mui-input-row loginByphone" v-show='flag'>-->
+      <!--<label>手机号：</label>-->
+      <!--<input type="text" placeholder="请输入手机号" name='regex'>-->
+      <!--<span class="getCode">获取验证码</span>-->
+      <!--</div>-->
       <div class="mui-input-row" v-show='!flag'>
         <label>密码：</label>
         <input type="password" placeholder="请输入密码" name='password' v-model='password'>
       </div>
 
-      <div class="mui-input-row" v-show='flag'>
-        <label>验证码：</label>
-        <input type="text" placeholder="请输入验证码" name='code'>
-      </div>
+      <!--<div class="mui-input-row" v-show='flag'>-->
+      <!--<label>验证码：</label>-->
+      <!--<input type="text" placeholder="请输入验证码" name='code'>-->
+      <!--</div>-->
       <div class="mui-button-row">
-        <router-link type="submit" class="mui-btn mui-btn-primary mui-btn-block" @click.prevent='login' tag="button"
-                     to="/profile">登录
-        </router-link>
+        <button type="submit" class="mui-btn mui-btn-primary mui-btn-block" @click.prevent='login' tag="button"
+        >登录
+        </button>
       </div>
     </form>
 
@@ -35,14 +35,13 @@
 </template>
 
 <script>
-  import {Toast} from 'mint-ui'
 
   export default {
     data() {
       return {
-        uname: 'em',
-        password: null,
-        flag: true,
+        username: '',
+        password: '',
+        flag: false,
         msg: '用户名不少于4位',
         pswVal: '密码为6-15位数字或字符串组成',
         phoneVal: '请输入正确的手机号码',
@@ -51,24 +50,31 @@
     },
     methods: {
       login() {
-        var obj = {uname: this.uname, password: this.password}
-        this.password = parseInt(this.password)
-        if (this.uname !== 'em' || this.password !== 123456) {
-          Toast({
-            message: '用户名或密码错误！',
-            position: 'middle',
-            duration: 3000
-          })
-          this.password = null
-        } else {
-          Toast({
-            message: '登录成功！',
-            position: 'middle',
-            duration: 1000
-          })
-          // this.$store.commit('addLogin',obj)
-          this.$router.push('/person')
-        }
+        var _this = this;
+        var param = {username: this.username, password: this.password};
+        this.$ajax.post('apis/user/login', param).then(function (res) {
+          if (res.info = 'success') {
+            console.log('跳转');
+            _this.$router.push('/profile')
+          }
+        });
+        // this.password = parseInt(this.password)
+        // if (this.uname !== 'em' || this.password !== 123456) {
+        //   Toast({
+        //     message: '用户名或密码错误！',
+        //     position: 'middle',
+        //     duration: 3000
+        //   })
+        //   this.password = null
+        // } else {
+        //   Toast({
+        //     message: '登录成功！',
+        //     position: 'middle',
+        //     duration: 1000
+        //   })
+        //   // this.$store.commit('addLogin',obj)
+        //   this.$router.push('/person')
+        // }
       }
     }
   }

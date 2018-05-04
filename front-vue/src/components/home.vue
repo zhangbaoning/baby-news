@@ -26,7 +26,7 @@
     <div class="main">
       <router-link class="infor_list" v-for="article in articlesData" :to="'/home/homeInfo/' + article.id" tag="div">
         <div class="img_left">
-          <img src="../assets/img/em.jpg" alt="">
+          <img :src="article.img" alt="暂无图片">
         </div>
         <div class="content_right">
           <h4>{{article.title}}</h4>

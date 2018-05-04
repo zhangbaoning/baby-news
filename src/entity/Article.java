@@ -15,6 +15,10 @@ public class Article {
     private String id;
     private String title;
     private String descr;
+    /**
+     * 预览图片
+     */
+    private String img;
     private String content;
     private String clickCount;
     private Timestamp datePublish;
@@ -50,6 +54,16 @@ public class Article {
 
     public void setDescr(String descr) {
         this.descr = descr;
+    }
+
+    @Basic
+    @Column(name = "img", nullable = true, length = 64)
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Basic
