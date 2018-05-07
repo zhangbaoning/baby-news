@@ -16,7 +16,7 @@
         <span class="mui-icon mui-icon-extra mui-icon-extra-find"></span>
         <span class="mui-tab-label">社区</span>
       </router-link>
-      <router-link class="mui-tab-item-llb" to="/person">
+      <router-link class="mui-tab-item-llb" :to="routerMy">
         <span class="mui-icon mui-icon-extra mui-icon-extra-addpeople"></span>
         <span class="mui-tab-label">我的</span>
       </router-link>
@@ -25,7 +25,30 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    data() {
+      return {
+        routerMy: ''
+      }
+    },
+    methods: {
+      getRouterMy() {
+        console.log('这里是判断');
+        let user = sessionStorage.getItem('user');
+        console.log(user);
+        if (user === null) {
+          this.routerMy = '/person';
+          console.log('执行登陆界面');
+        } else {
+          this.routerMy = '/profile';
+          console.log('执行简介界面');
+        }
+      }
+    },
+    mounted() {
+      this.getRouterMy();
+    }
+  };
 </script>
 
 

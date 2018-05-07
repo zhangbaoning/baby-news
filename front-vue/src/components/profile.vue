@@ -23,11 +23,11 @@
     </header>
     <div class="info">
       <img src="../assets/img/bg.jpg" alt="">
-      <img src="../assets/img/head.jpeg" alt="" class="head">
+      <img :src="user.avatar" alt="" class="head">
     </div>
     <div class="content">
-      <p class="name">小可爱</p>
-      <p class="comment">评论数：30</p>
+      <p class="name">{{user.nickname}}</p>
+      <p class="comment">评论数：{{user.commentCount}}</p>
     </div>
     <div class="message">
       <div>消息</div>
@@ -45,7 +45,7 @@
         </div>
         <div>
           <p><span class="mui-icon mui-icon-extra mui-icon-extra-gold"></span>本月积分</p>
-          <p class="num pb">80</p>
+          <p class="num pb">{{user.score}}</p>
         </div>
       </div>
       <div class="team">
@@ -73,7 +73,34 @@
   </div>
 </template>
 <script>
-  export default {};
+  export default {
+    data() {
+      return {
+        user: {}
+      }
+    },
+    methods: {
+      // 获取登陆者信息
+      getUser() {
+        var _this = this;
+        console.log('sessionStorage');
+        console.log(sessionStorage.getItem('user'));
+        this.$ajax.get('apis/user/getInfo', {
+          params: {
+            userId: sessionStorage.getItem('user')
+          }
+        }).then(function (res) {
+          console.log('获得作者信息');
+          console.log(res);
+          _this.user = res.data;
+        });
+      },
+    },
+    created() {
+      this.getUser();
+    }
+  };
+
 </script>
 <style lang="scss" scoped>
   img {
@@ -91,7 +118,7 @@
       position: relative;
       .head {
         display: block;
-        width: 80px;
+        width: 85px;
         border-radius: 50%;
         position: absolute;
         left: 50%;

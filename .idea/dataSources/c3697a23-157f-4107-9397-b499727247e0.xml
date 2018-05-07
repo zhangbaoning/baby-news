@@ -1060,9 +1060,10 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="235" name="nickname">
+    <column id="264" parent="235" name="user_id">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <Comment>用户ID</Comment>
+      <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="265" parent="235" name="publish_time">

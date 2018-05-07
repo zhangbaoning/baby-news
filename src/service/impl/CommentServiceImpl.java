@@ -79,4 +79,18 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> commentList = commentDao.selectAll();
         return commentList;
     }
+
+    /**
+     * 通过userID查询出评论总数
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public int countByUserId(String userId) {
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        int count = commentDao.selectCount(comment);
+        return count;
+    }
 }

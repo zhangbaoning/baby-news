@@ -47,4 +47,12 @@ public interface CommentService {
      * @return
      */
     List<Comment> selectAllComment();
+
+    /**
+     * 通过userID查询出评论总数
+     *
+     * @param userId
+     * @return 评论总数
+     */
+    int countByUserId(String userId);
 }

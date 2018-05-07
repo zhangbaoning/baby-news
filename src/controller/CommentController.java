@@ -3,11 +3,13 @@ package controller;
 import dto.CommentRespDTO;
 import entity.Article;
 import entity.Comment;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ArticleService;
 import service.CommentService;
+import service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,8 @@ public class CommentController {
     private ArticleService articleService;
     @Autowired
     private CommentService commentService;
-
+    @Autowired
+    private UserService userService;
     /**
      * 为资讯添加评论
      *
@@ -64,7 +67,9 @@ public class CommentController {
             Article getArticle = articleService.selectArticle(article);
 
             commentRespDTO.setId(comment.getId());
-            commentRespDTO.setNickname(comment.getNickname());
+
+            User user = userService.getUserByPrimaryKey(comment.getUserId());
+            commentRespDTO.setNickname(user.getNickname());
             commentRespDTO.setArticle(getArticle.getTitle());
             commentRespDTO.setPublishTime(comment.getPublishTime());
             commentRespDTO.setComment(comment.getContent());

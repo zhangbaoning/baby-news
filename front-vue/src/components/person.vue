@@ -54,8 +54,11 @@
         var param = {username: this.username, password: this.password};
         this.$ajax.post('apis/user/login', param).then(function (res) {
           if (res.info = 'success') {
+            // 登陆成功将用户信息进行保存
+            sessionStorage.setItem('user', res.data.user);
             console.log('跳转');
             _this.$router.push('/profile')
+            window.location.reload();
           }
         });
         // this.password = parseInt(this.password)

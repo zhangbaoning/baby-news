@@ -6,12 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
+/**
+ * @Description
+ * @Author zhangbaoning
+ * @Date 2018/5/7
+ */
 @Entity
 public class Comment {
     @Id
     private String id;
     private String content;
-    private String nickname;
+    private String userId;
     private Timestamp publishTime;
     private String articleId;
 
@@ -37,18 +42,18 @@ public class Comment {
 
 
     @Basic
-    @Column(name = "nickname", nullable = true, length = 255)
-    public String getNickname() {
-        return nickname;
+    @Column(name = "user_id", nullable = true, length = 255)
+
+    public String getUserId() {
+        return userId;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
-
 
     @Basic
-    @Column(name = "publish_date", nullable = true)
+    @Column(name = "publish_time", nullable = true)
 
     public Timestamp getPublishTime() {
         return publishTime;
@@ -57,8 +62,6 @@ public class Comment {
     public void setPublishTime(Timestamp publishTime) {
         this.publishTime = publishTime;
     }
-
-
 
 
     @Basic
