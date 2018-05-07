@@ -43,7 +43,7 @@ public class TestMybatis {
     @Test
     public void testGetUser() {
         User user = new User();
-        user.setId(1);
+        user.setId("1");
         System.out.println(userService.selectUser(user));
 
     }

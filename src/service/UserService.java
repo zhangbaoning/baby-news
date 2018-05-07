@@ -42,4 +42,11 @@ public interface UserService {
      * @return 用户集合
      */
     List<User> getAll();
+
+    /**
+     * 通过主键进行查询
+     *
+     * @return
+     */
+    User getUserByPrimaryKey(String id);
 }

@@ -9,21 +9,47 @@ import java.util.Objects;
 
 @Entity
 public class User {
-    private int id;
+    /**
+     * 用户主键
+     */
+    @Id
+    private String id;
+    /**
+     * 用户账号
+     */
     private String username;
+    /**
+     * 用户密码
+     */
     private String password;
+    /**
+     * 用户网名
+     */
     private String nickname;
+    /**
+     * 用户头像
+     */
+    private String avatar;
+    /**
+     * 用户电话
+     */
     private String mobile;
+    /**
+     * 用户注册时间
+     */
     private Date dateJoined;
+    /**
+     * 用户角色
+     */
     private String roleId;
 
     @Id
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,6 +84,17 @@ public class User {
     }
 
     @Basic
+    @Column(name = "avatar", nullable = true, length = 255)
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    @Basic
     @Column(name = "mobile", nullable = true, length = 11)
     public String getMobile() {
         return mobile;
@@ -69,11 +106,11 @@ public class User {
 
     @Basic
     @Column(name = "date_joined", nullable = true)
-    public Date getDataJoined() {
+    public Date getDateJoined() {
         return dateJoined;
     }
 
-    public void setDataJoined(Date dataJoined) {
+    public void setDateJoined(Date dataJoined) {
         this.dateJoined = dateJoined;
     }
 

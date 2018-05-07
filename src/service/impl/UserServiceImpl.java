@@ -84,5 +84,13 @@ public class UserServiceImpl implements UserService {
         return userDao.selectAll();
     }
 
+    @Override
+    public User getUserByPrimaryKey(String userId) {
+        User user = new User();
+        user.setId(userId);
+        User userResult = userDao.selectByPrimaryKey(user);
+        return userResult;
+    }
+
 
 }

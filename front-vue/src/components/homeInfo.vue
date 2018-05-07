@@ -12,14 +12,14 @@
       <div class="article-info">
         <div class="info">
           <div class="avatar">
-            <img src="../assets/img/em.jpg">
+            <img :src="author.avatar">
           </div>
-          <div class="name">山青青</div>
+          <div class="name">{{author.nickname}}</div>
         </div>
         <div class="meta">
                 <span>
-                2018.03.31 18:59 ·
-                1378字
+                {{articleData.datePublish | dateFormat}}
+                  <!--1378字-->
                 </span>
         </div>
       </div>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <p>{{comment.content}}</p>
-        <span class="meta">{{index+1}}楼 · {{comment.publishTime}}</span>
+        <span class="meta">{{index+1}}楼 · {{comment.publishTime | dateFormat}}</span>
       </div>
 
     </div>
@@ -55,10 +55,24 @@
       return {
         articleData: {},
         commentsData: [],
-        inputComment: ''
+        inputComment: '',
+        author: {} // 作者信息
       }
     },
     methods: {
+      // 获取作者信息
+      getUser() {
+        var _this = this;
+        this.$ajax.get('apis/article/getUser', {
+          params: {
+            articleId: this.$route.params.id
+          }
+        }).then(function (res) {
+          console.log('获得作者信息');
+          console.log(res);
+          _this.author = res.data;
+        });
+      },
       // 发布评论
       postComment() {
         let comment = {
@@ -67,6 +81,9 @@
           nickname: 'zbn'
         };
         this.$ajax.post('apis/comment/add', comment);
+        // 发布成功后重新获取评论集合
+        this.getComments();
+        this.commentsData.reverse();
 
       },
       // 获取文章详情
@@ -87,11 +104,13 @@
           .then(function (res) {
             _this.commentsData = res.data;
           })
+
       }
     },
     mounted() {
       this.getArticleDetail();
       this.getComments();
+      this.getUser();
     }
   };
 </script>
@@ -131,6 +150,7 @@
         color: #2f2f2f;
         word-break: break-word !important;
         line-height: 1.4;
+        /*text-align: center;*/
       }
       .article-info {
         margin-left: 20px;
@@ -162,8 +182,10 @@
       }
     }
     .art_content {
+      padding-left: 20px;
+      padding-right: 20px;
       p {
-        margin: 0 12px 20px;
+        margin: 0 12px 20px !important;
         color: #2f2f2f;
         font-size: 16px;
         font-weight: 400;

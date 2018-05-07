@@ -14,7 +14,9 @@
     <div class="main">
       <router-link class="infor_list" v-for="article in articlesData" :to="'/home/homeInfo/' + article.id" tag="div">
         <div class="img_left">
+          <!--图片 115*113-->
           <img :src="article.img" alt="暂无图片">
+          <!--<img src="../assets/img/em.jpg" alt="暂无图片" >-->
         </div>
         <div class="content_right">
           <h4>{{article.title}}</h4>
@@ -94,6 +96,7 @@
         img {
           border-radius: 4%;
           width: 100%;
+          height: 100%;
         }
       }
       .content_right {

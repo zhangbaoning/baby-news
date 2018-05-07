@@ -1,6 +1,7 @@
 package entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -24,6 +25,8 @@ public class Article {
     private Timestamp datePublish;
     private String userId;
     private int categoryId;
+
+    //    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Timestamp dateModified;
 
 
@@ -86,10 +89,12 @@ public class Article {
         this.clickCount = clickCount;
     }
 
+    // FIXME 日期格式化不可用
     @Basic
     @Column(name = "date_publish", nullable = true)
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public Timestamp getDatePublish() {
         return datePublish;
     }

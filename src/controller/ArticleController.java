@@ -1,10 +1,12 @@
 package controller;
 
 import entity.Article;
+import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ArticleService;
+import service.UserService;
 
 import java.util.List;
 
@@ -19,6 +21,8 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 发布资讯
@@ -127,6 +131,28 @@ public class ArticleController {
         article.setCategoryId(categoryId);
 //        对设置分类后的资讯进行更新
         this.updateArticle(article);
+    }
+
+    /**
+     * 通过文章ID获取到作者详情
+     *
+     * @return 作者详情
+     */
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserByArticleId(@RequestParam String articleId) {
+
+        Article article = new Article();
+        article.setId(articleId);
+        Article articleResult = articleService.selectArticle(article);
+        String userId = articleResult.getUserId();
+        User userResp = userService.getUserByPrimaryKey(userId);
+//        不能将密码返回前台
+        if (userResp != null) {
+            userResp.setPassword(null);
+        }
+
+        return userResp;
     }
 
 

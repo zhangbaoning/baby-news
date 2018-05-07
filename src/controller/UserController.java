@@ -25,7 +25,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Map login(@RequestBody User user) {
-        Map responseMap = new HashMap();
+        Map responseMap = new HashMap(16);
         User loginUser = userService.selectUser(user);
         if (loginUser != null) {
 

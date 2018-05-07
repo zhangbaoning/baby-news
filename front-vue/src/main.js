@@ -9,11 +9,15 @@ import 'mint-ui/lib/style.css'
 import '../src/assets/mui/css/mui.min.css'
 import '../src/assets/mui/css/icons-extra.css'
 import axios from 'axios'
+import moment from 'moment'
 
 Vue.use(Mint);
 Vue.prototype.$ajax = axios
 Vue.config.productionTip = false
-
+// 定义全局的过滤器
+Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+  return moment(dataStr).format(pattern)
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
