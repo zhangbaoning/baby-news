@@ -75,16 +75,20 @@
       },
       // 发布评论
       postComment() {
-        let comment = {
-          content: this.inputComment,
-          articleId: this.$route.params.id,
-          nickname: 'zbn'
-        };
-        this.$ajax.post('apis/comment/add', comment);
-        // 发布成功后重新获取评论集合
-        this.getComments();
-        this.commentsData.reverse();
-
+        var id = sessionStorage.getItem('user');
+        if (id !== null) {
+          let comment = {
+            content: this.inputComment,
+            articleId: this.$route.params.id,
+            userId: id
+          };
+          this.$ajax.post('apis/comment/add', comment);
+          // 发布成功后重新获取评论集合
+          this.getComments();
+          this.commentsData.reverse();
+        } else {
+          alert('请先登录');
+        }
       },
       // 获取文章详情
       getArticleDetail() {
