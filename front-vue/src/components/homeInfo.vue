@@ -36,12 +36,12 @@
           <div class="comment-top">
             <div class="avatar">
               <img
-                src="//upload.jianshu.io/users/upload_avatars/11185255/20396f34-ff9f-48f3-a6e8-371685f14561.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/102/h/102">
+                :src="comment.avatar">
             </div>
-            <div class="name">萤火虫</div>
+            <div class="name">{{comment.nickname}}</div>
           </div>
         </div>
-        <p>{{comment.content}}</p>
+        <p>{{comment.comment}}</p>
         <span class="meta">{{index+1}}楼 · {{comment.publishTime | dateFormat}}</span>
       </div>
 

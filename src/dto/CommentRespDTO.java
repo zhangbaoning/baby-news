@@ -28,9 +28,22 @@ public class CommentRespDTO {
     private String nickname;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 发布时间
      */
     private Timestamp publishTime;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getId() {
         return id;
@@ -70,5 +83,16 @@ public class CommentRespDTO {
 
     public void setPublishTime(Timestamp publishTime) {
         this.publishTime = publishTime;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentRespDTO{" +
+                "id='" + id + '\'' +
+                ", article='" + article + '\'' +
+                ", comment='" + comment + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", publishTime=" + publishTime +
+                '}';
     }
 }

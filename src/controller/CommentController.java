@@ -28,11 +28,11 @@ public class CommentController {
     private CommentService commentService;
     @Autowired
     private UserService userService;
+
     /**
      * 为资讯添加评论
      *
      * @param comment 评论
-     *
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
@@ -92,14 +92,28 @@ public class CommentController {
     }
 
     /**
-     * 通过文章ID查询评论
+     * 通过文章ID查询所有评论
      *
      * @param articleId 文章ID
      */
     @RequestMapping(value = "/getById", method = RequestMethod.GET)
     @ResponseBody
-    public List<Comment> getCommentById(@RequestParam String articleId) {
+    public List<CommentRespDTO> getCommentById(@RequestParam String articleId) {
+        List<CommentRespDTO> commentRespDTOList = new ArrayList<>();
         List<Comment> commentList = commentService.selectCommentsById(articleId);
-        return commentList;
+        for (Comment comment : commentList) {
+            CommentRespDTO commentRespDTO = new CommentRespDTO();
+            User user = userService.getUserByPrimaryKey(comment.getUserId());
+//            头像
+            commentRespDTO.setAvatar(user.getAvatar());
+//            网名
+            commentRespDTO.setNickname(user.getNickname());
+//            评论内容
+            commentRespDTO.setComment(comment.getContent());
+//            评论发布时间
+            commentRespDTO.setPublishTime(comment.getPublishTime());
+            commentRespDTOList.add(commentRespDTO);
+        }
+        return commentRespDTOList;
     }
 }
