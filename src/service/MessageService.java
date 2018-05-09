@@ -16,4 +16,11 @@ public interface MessageService {
      * @return 全部消息集合
      */
     List<Message> getAll();
+
+    /**
+     * 通过id查询到消息
+     *
+     * @return
+     */
+    Message getById(String id);
 }

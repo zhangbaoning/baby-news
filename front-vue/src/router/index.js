@@ -35,7 +35,7 @@ export default new Router({
       component: homeInfo
     },
     {
-      path: "/community/communityInfo/1",
+      path: "/community/communityInfo/:id",
       name: 'communityInfo',
       component: communityInfo
     },

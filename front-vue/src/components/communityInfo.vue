@@ -9,14 +9,14 @@
     <div class="header">
       <img src="../assets/img/20180418091612.jpg" alt="">
       <div class="userInfo">
-        <span>{{username}}</span><br>
-        <p>{{publishTime}}</p>
+        <span>{{messageData.nickname}}</span><br>
+        <p>{{messageData.publishTime}}</p>
         <p>{{phoneInfo}}</p>
       </div>
     </div>
     <div class="banner">
       <div class="text">
-        <span>{{text}}</span>
+        <span>{{messageData.content}}</span>
       </div>
       <div class="photo">
         <img src="../assets/img/1.jpg" alt="">
@@ -52,11 +52,7 @@
           <span class="meta">18楼 · 03.31 20:11</span>
         </div>
       </div>
-
-
     </div>
-
-
   </div>
 </template>
 <script>
@@ -72,8 +68,27 @@
         love: "22",
         comment: "10",
         repeat: "0",
+        messageData: ''
 
       };
+    },
+    methods: {
+      postComment() {
+
+      },
+      getMessage() {
+        var _this = this;
+        this.$ajax.get('apis/message/getMessage', {
+          params: {
+            id: this.$route.params.id
+          }
+        }).then(function (res) {
+          _this.messageData = res.data;
+        });
+      }
+    },
+    mounted() {
+      this.getMessage();
     }
   };
 </script>

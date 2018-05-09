@@ -28,4 +28,18 @@ public class MessageServiceImpl implements MessageService {
         List<Message> messageList = messageDao.selectAll();
         return messageList;
     }
+
+    /**
+     * 通过id查询到消息
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Message getById(String id) {
+        Message message = new Message();
+        message.setId(id);
+        Message result = messageDao.selectByPrimaryKey(message);
+        return result;
+    }
 }
