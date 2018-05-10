@@ -52,7 +52,7 @@
                         <el-input v-model="selectTable.name" auto-complete="off"></el-input>
                     </el-form-item>
                     <el-form-item label="分类介绍" label-width="100px">
-                        <el-input v-model="selectTable.description"></el-input>
+                        <el-input v-model="selectTable.description" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-form>
                 <div slot="footer" class="dialog-footer">
@@ -163,9 +163,11 @@
                 console.log(this.selectTable);
                 var para = {
                     id: this.selectTable.id,
-                    name: this.selectTable.name
+                    name: this.selectTable.name,
+                    description: this.selectTable.description
                 };
                 this.$ajax.post('apis/category/update', para);
+                this.dialogFormVisible = false; // 关闭编辑界面
                 // this.$ajax.post('apis/category/update', this.selectTable);
             },
             // 编辑分类
