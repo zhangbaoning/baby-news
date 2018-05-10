@@ -85,4 +85,16 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
     }
+
+    /**
+     * 查询所有符合封装条件的文章
+     *
+     * @param article 封装要查询的属性
+     * @return 查询到的文章集合
+     */
+    @Override
+    public List<Article> selectArticles(Article article) {
+        List<Article> articleList = articleDao.select(article);
+        return articleList;
+    }
 }

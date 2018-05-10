@@ -5,9 +5,9 @@
     <!-- 导航栏 -->
     <div class="banner">
       <div class="scroll">
-        <a class="control-item active" v-for="category in categories">
-          {{category.name}}
-        </a>
+        <mt-navbar v-model="selected" class="control-item" @click.active='getByCategory'>
+          <mt-tab-item :id="category.id" v-for="category in categories">{{category.name}}</mt-tab-item>
+        </mt-navbar>
       </div>
 
     </div>
@@ -35,10 +35,30 @@
     data() {
       return {
         articlesData: [],
-        categories: []
+        categories: [],
+        selected: ''
       };
     },
+    watch: {
+      selected: function (val, oldVal) {
+        //val     切换后 id
+        //oldVal  切换前 id
+        console.log(val);
+        console.log(oldVal);
+        var _this = this;
+        this.$ajax.get('apis/article/getByCategoryId', {
+          params: {
+            categoryId: val
+          }
+        }).then(function (res) {
+          _this.articlesData = res.data;
+        });
+      }
+    },
     methods: {
+      getByCategory() {
+        console.log('点击分类');
+      },
       // 获取分类
       getCategory() {
         var _this = this;

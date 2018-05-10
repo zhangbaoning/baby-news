@@ -122,7 +122,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/addCategory", method = RequestMethod.POST)
     @ResponseBody
-    public void addCategoryForArticle(int categoryId, String articleId) {
+    public void addCategoryForArticle(String categoryId, String articleId) {
 //        通过资讯ID查询到资讯实体
         Article article = this.getArticle(articleId);
 //        Article article = this.getArticle(new Article());
@@ -153,6 +153,15 @@ public class ArticleController {
         }
 
         return userResp;
+    }
+
+    @RequestMapping(value = "/getByCategoryId", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Article> getByCategoryId(@RequestParam String categoryId) {
+        Article article = new Article();
+        article.setCategoryId(categoryId);
+        List<Article> articleList = articleService.selectArticles(article);
+        return articleList;
     }
 
 

@@ -49,4 +49,12 @@ public interface ArticleService {
      * @return
      */
     List<Article> selectArticleAll(int page, int size);
+
+    /**
+     * 查询所有符合封装条件的文章
+     *
+     * @param article 封装要查询的属性
+     * @return 查询到的文章集合
+     */
+    List<Article> selectArticles(Article article);
 }
