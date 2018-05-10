@@ -13,12 +13,31 @@ import java.sql.Timestamp;
  */
 @Entity
 public class Comment {
+    /**
+     * 评论主键
+     */
     @Id
     private String id;
+    /**
+     * 评论内容
+     */
     private String content;
-    private String userId;
+    /**
+     * 发布时间
+     */
     private Timestamp publishTime;
+    /**
+     * 用户外键
+     */
+    private String userId;
+    /**
+     * 文章外键
+     */
     private String articleId;
+    /**
+     * 消息外键
+     */
+    private String messageId;
 
     @Basic
     @Column(name = "id", nullable = true)
@@ -72,5 +91,15 @@ public class Comment {
 
     public void setArticleId(String articleId) {
         this.articleId = articleId;
+    }
+
+    @Basic
+    @Column(name = "message_id", nullable = true)
+    public String getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 }

@@ -116,4 +116,30 @@ public class CommentController {
         }
         return commentRespDTOList;
     }
+
+    /**
+     * 通过文章ID查询所有评论
+     *
+     * @param messageId 文章ID
+     */
+    @RequestMapping(value = "/getByMsgId", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CommentRespDTO> getByMsgId(@RequestParam String messageId) {
+        List<CommentRespDTO> commentRespDTOList = new ArrayList<>();
+        List<Comment> commentList = commentService.selectByMsgId(messageId);
+        for (Comment comment : commentList) {
+            CommentRespDTO commentRespDTO = new CommentRespDTO();
+            User user = userService.getUserByPrimaryKey(comment.getUserId());
+//            头像
+            commentRespDTO.setAvatar(user.getAvatar());
+//            网名
+            commentRespDTO.setNickname(user.getNickname());
+//            评论内容
+            commentRespDTO.setComment(comment.getContent());
+//            评论发布时间
+            commentRespDTO.setPublishTime(comment.getPublishTime());
+            commentRespDTOList.add(commentRespDTO);
+        }
+        return commentRespDTOList;
+    }
 }

@@ -42,6 +42,14 @@ public interface CommentService {
     List<Comment> selectCommentsById(String articleId);
 
     /**
+     * 通过消息ID查询评论
+     *
+     * @param messageId
+     * @return
+     */
+    List<Comment> selectByMsgId(String messageId);
+
+    /**
      * 查询所有的评论
      *
      * @return

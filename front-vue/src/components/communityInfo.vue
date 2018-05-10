@@ -36,20 +36,20 @@
     <div class="commentList">
       <div class="comment">
         <h3>发表评论</h3>
-        <textarea placeholder="请输入要评论的内容（最多评论120字）" maxlength="120"></textarea>
+        <textarea v-model="inputComment" placeholder="请输入要评论的内容（最多评论120字）" maxlength="120"></textarea>
         <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
-        <div class="comm_list">
+        <div class="comm_list" v-for="(comment,index) in commentsData">
           <div class="comment">
             <div class="comment-top">
               <div class="avatar">
                 <img
                   src="//upload.jianshu.io/users/upload_avatars/11185255/20396f34-ff9f-48f3-a6e8-371685f14561.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/102/h/102">
               </div>
-              <div class="name">萤火虫</div>
+              <div class="name">{{comment.nickname}}</div>
             </div>
           </div>
-          <p>一言以蔽之：坚持沉稳地做有价值的事情，慢慢等待时间的回报。</p>
-          <span class="meta">18楼 · 03.31 20:11</span>
+          <p>{{comment.comment}}</p>
+          <span class="meta">{{index+1}}楼 · {{comment.publishTime | dateFormat}}</span>
         </div>
       </div>
     </div>
@@ -60,6 +60,8 @@
     name: "communityInfo",
     data() {
       return {
+        commentsData: [],
+        inputComment: "", // 评论内容
         username: "一只读物",
         publishTime: "4月17日 19:00",
         text:
@@ -74,7 +76,20 @@
     },
     methods: {
       postComment() {
-
+        var id = sessionStorage.getItem('user');
+        if (id !== null) {
+          let comment = {
+            content: this.inputComment,
+            messageId: this.$route.params.id,
+            userId: id
+          };
+          this.$ajax.post('apis/comment/add', comment);
+          // 发布成功后重新获取评论集合
+          this.getComments();
+          this.commentsData.reverse();
+        } else {
+          alert('请先登录');
+        }
       },
       getMessage() {
         var _this = this;
@@ -85,10 +100,18 @@
         }).then(function (res) {
           _this.messageData = res.data;
         });
-      }
+      },
+      getComments() {
+        var _this = this;
+        this.$ajax.get('apis/comment/getByMsgId', {params: {messageId: this.$route.params.id}})
+          .then(function (res) {
+            _this.commentsData = res.data;
+          })
+      },
     },
     mounted() {
       this.getMessage();
+      this.getComments();
     }
   };
 </script>

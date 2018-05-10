@@ -108,7 +108,6 @@
           .then(function (res) {
             _this.commentsData = res.data;
           })
-
       }
     },
     mounted() {

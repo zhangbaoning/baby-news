@@ -68,6 +68,20 @@ public class CommentServiceImpl implements CommentService {
         return commentList;
     }
 
+    /**
+     * 通过消息ID查询评论
+     *
+     * @param messageId
+     * @return
+     */
+    @Override
+    public List<Comment> selectByMsgId(String messageId) {
+        Comment comment = new Comment();
+        comment.setMessageId(messageId);
+        List<Comment> commentList = commentDao.select(comment);
+        return commentList;
+    }
+
 
     /**
      * 查询所有的评论
