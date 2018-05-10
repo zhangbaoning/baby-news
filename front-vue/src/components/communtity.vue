@@ -18,18 +18,26 @@
           <div class="text">
             <span>{{messageInfo.content}}</span>
           </div>
-
-          <div class="photo">
+          <!--TODO 图片实现-->
+          <!--<div class="photo">
             <img src="../assets/img/1.jpg" alt="">
             <img src="../assets/img/1.jpg" alt="">
             <img src="../assets/img/1.jpg" alt="">
             <img src="../assets/img/1.jpg" alt="">
-          </div>
+          </div>-->
         </div>
       </router-link>
-
-
     </div>
+    <router-link class="mint-palette-button pb publish" tag="div" to="/publish">
+      <div class="mint-sub-button-container">
+        <div class="my-icon-button indexicon icon-popup palette-button-35-sub-0"></div>
+        <div class="my-icon-button indexicon icon-popup palette-button-35-sub-1"></div>
+        <div class="my-icon-button indexicon icon-popup palette-button-35-sub-2"></div>
+      </div>
+      <div class="mint-main-button" style="color: rgb(255, 255, 255); background-color: rgb(38, 162, 255);">
+        +
+      </div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -63,6 +71,18 @@
   .community {
     background-color: #fff;
     margin-top: 40px;
+    .publish {
+      position: fixed;
+      bottom: 60px;
+      right: 10px;
+      background-color: #0087ff;
+      z-index: 999999;
+      border-radius: 50%;
+      .mui-icon {
+        font-size: 38px;
+        color: #ffffff;
+      }
+    }
     .userInfo {
       span {
         font-size: 14px;

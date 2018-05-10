@@ -10,7 +10,7 @@
       <img src="../assets/img/20180418091612.jpg" alt="">
       <div class="userInfo">
         <span>{{messageData.nickname}}</span><br>
-        <p>{{messageData.publishTime}}</p>
+        <p>{{messageData.publishTime | dateFormat}}</p>
         <p>{{phoneInfo}}</p>
       </div>
     </div>
@@ -18,21 +18,21 @@
       <div class="text">
         <span>{{messageData.content}}</span>
       </div>
-      <div class="photo">
-        <img src="../assets/img/1.jpg" alt="">
-        <img src="../assets/img/1.jpg" alt="">
-        <img src="../assets/img/1.jpg" alt="">
-        <img src="../assets/img/1.jpg" alt="">
-      </div>
+      <!-- <div class="photo">
+         <img src="../assets/img/1.jpg" alt="">
+         <img src="../assets/img/1.jpg" alt="">
+         <img src="../assets/img/1.jpg" alt="">
+         <img src="../assets/img/1.jpg" alt="">
+       </div>-->
     </div>
 
-    <div class="footer">
-      <div class="weibInfo">
-        <span>赞 {{love}}</span>
-        <span>评论 {{comment}}</span>
-        <span>转发{{repeat}}</span>
-      </div>
-    </div>
+    <!-- <div class="footer">
+       <div class="weibInfo">
+         <span>赞 {{love}}</span>
+         <span>评论 {{comment}}</span>
+         <span>转发{{repeat}}</span>
+       </div>
+     </div>-->
     <div class="commentList">
       <div class="comment">
         <h3>发表评论</h3>
@@ -85,7 +85,9 @@
           };
           this.$ajax.post('apis/comment/add', comment);
           // 发布成功后重新获取评论集合
-          this.getComments();
+          setTimeout(() => {
+            this.getComments();
+          }, 500);
           this.commentsData.reverse();
         } else {
           alert('请先登录');

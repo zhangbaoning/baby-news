@@ -6,6 +6,7 @@ import person from '../components/person.vue'
 import homeInfo from '../components/homeInfo.vue'
 import communityInfo from '../components/communityInfo.vue'
 import profile from '../components/profile.vue'
+import publish from '../components/publish.vue'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
       path: "/profile",
       name: "profile",
       component: profile
+    },
+    {
+      path: "/publish",
+      name: "publish",
+      component: publish
     }
   ],
   linkActiveClass: 'mui-active'

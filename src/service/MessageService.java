@@ -23,4 +23,11 @@ public interface MessageService {
      * @return
      */
     Message getById(String id);
+
+    /**
+     * 添加消息
+     *
+     * @param message
+     */
+    int add(Message message);
 }

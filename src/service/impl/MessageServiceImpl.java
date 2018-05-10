@@ -4,6 +4,7 @@ import dao.MessageDao;
 import entity.Message;
 import org.springframework.stereotype.Service;
 import service.MessageService;
+import utils.UUIDUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -41,5 +42,16 @@ public class MessageServiceImpl implements MessageService {
         message.setId(id);
         Message result = messageDao.selectByPrimaryKey(message);
         return result;
+    }
+
+    /**
+     * 添加消息
+     *
+     * @param message
+     */
+    @Override
+    public int add(Message message) {
+        message.setId(UUIDUtils.getId());
+        return messageDao.insert(message);
     }
 }

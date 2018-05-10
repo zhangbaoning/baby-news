@@ -6,10 +6,7 @@ import entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.MessageService;
 import service.UserService;
 
@@ -37,10 +34,14 @@ public class MessageController {
         for (Message message : messageList) {
             MessageRespDTO messageRespDTO = new MessageRespDTO();
             User user = userService.getUserByPrimaryKey(message.getUserId());
-            BeanUtils.copyProperties(message, messageRespDTO);
-            messageRespDTO.setAvatar(user.getAvatar());
-            messageRespDTO.setNickname(user.getNickname());
-            messageRespDTOList.add(messageRespDTO);
+            if (user != null) {
+                BeanUtils.copyProperties(message, messageRespDTO);
+                messageRespDTO.setAvatar(user.getAvatar());
+                messageRespDTO.setNickname(user.getNickname());
+                messageRespDTOList.add(messageRespDTO);
+            } else {
+                break;
+            }
         }
         return messageRespDTOList;
     }
@@ -64,4 +65,11 @@ public class MessageController {
 
         return messageRespDTO;
     }
+
+    @RequestMapping(value = "postMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public void post(@RequestBody Message message) {
+        messageService.add(message);
+    }
+
 }
