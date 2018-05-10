@@ -1,5 +1,7 @@
 package dto;
 
+import java.sql.Date;
+
 /**
  * @Description
  * @Author zhangbaoning
@@ -9,7 +11,7 @@ public class UserInfoRespDTO {
     /**
      * 网名
      */
-    private String nickName;
+    private String nickname;
     /**
      * 头像
      */
@@ -23,16 +25,28 @@ public class UserInfoRespDTO {
      */
     private Integer score;
     /**
-     * 总活跃度
+     * 发布活跃度
      */
-    private Integer totalActivity;
+    private Integer publishActivity;
     /**
-     * 今天活跃度
+     * 消息评论活跃度
      */
-    private Integer totdayActivity;
+    private Integer commentMsgActivity;
+    /**
+     * 用户电话
+     */
+    private String mobile;
+    /**
+     * 用户注册时间
+     */
+    private Date dateJoined;
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Integer getCommentCount() {
@@ -43,9 +57,6 @@ public class UserInfoRespDTO {
         this.commentCount = commentCount;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
 
     public String getAvatar() {
         return avatar;
@@ -63,19 +74,35 @@ public class UserInfoRespDTO {
         this.score = score;
     }
 
-    public Integer getTotalActivity() {
-        return totalActivity;
+    public Integer getPublishActivity() {
+        return publishActivity;
     }
 
-    public void setTotalActivity(Integer totalActivity) {
-        this.totalActivity = totalActivity;
+    public void setPublishActivity(Integer publishActivity) {
+        this.publishActivity = publishActivity;
     }
 
-    public Integer getTotdayActivity() {
-        return totdayActivity;
+    public Integer getCommentMsgActivity() {
+        return commentMsgActivity;
     }
 
-    public void setTotdayActivity(Integer totdayActivity) {
-        this.totdayActivity = totdayActivity;
+    public void setCommentMsgActivity(Integer commentMsgActivity) {
+        this.commentMsgActivity = commentMsgActivity;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Date getDateJoined() {
+        return dateJoined;
+    }
+
+    public void setDateJoined(Date dateJoined) {
+        this.dateJoined = dateJoined;
     }
 }

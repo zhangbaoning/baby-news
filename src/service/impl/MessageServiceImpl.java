@@ -54,4 +54,18 @@ public class MessageServiceImpl implements MessageService {
         message.setId(UUIDUtils.getId());
         return messageDao.insert(message);
     }
+
+    /**
+     * 计算发布消息数
+     *
+     * @param userId 用户ID
+     * @return 发布消息数
+     */
+    @Override
+    public int countPublish(String userId) {
+        Message message = new Message();
+        message.setUserId(userId);
+        int count = messageDao.selectCount(message);
+        return count;
+    }
 }

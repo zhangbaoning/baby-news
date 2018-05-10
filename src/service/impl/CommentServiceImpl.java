@@ -107,4 +107,19 @@ public class CommentServiceImpl implements CommentService {
         int count = commentDao.selectCount(comment);
         return count;
     }
+
+    /**
+     * 计算消息的评论
+     *
+     * @param userId 用户ID
+     * @return 消息的评论数
+     */
+    @Override
+    public int countMsgByUserId(String userId) {
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        comment.setArticleId(null);
+        int count = commentDao.selectCount(comment);
+        return count;
+    }
 }

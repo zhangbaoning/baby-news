@@ -29,19 +29,19 @@
       <p class="name">{{user.nickname}}</p>
       <p class="comment">评论数：{{user.commentCount}}</p>
     </div>
-    <div class="message">
-      <div>消息</div>
-      <div>我的讨论</div>
-    </div>
+    <!--<div class="message">-->
+    <!--<div>消息</div>-->
+    <!--<div>我的讨论</div>-->
+    <!--</div>-->
     <div class="detail">
       <div class="active">
         <div>
-          <p><span class="mui-icon mui-icon-extra mui-icon-extra-trend"></span>活跃度</p>
-          <p class="num">80</p>
+          <p><span class="mui-icon mui-icon-extra mui-icon-extra-trend"></span>发布活跃度</p>
+          <p class="num">{{user.publishActivity}}</p>
         </div>
         <div>
-          <p><span class="mui-icon mui-icon-extra mui-icon-extra-lamp"></span>今天活跃度</p>
-          <p class="num">80</p>
+          <p><span class="mui-icon mui-icon-extra mui-icon-extra-lamp"></span>互动活跃度</p>
+          <p class="num">{{user.commentMsgActivity}}</p>
         </div>
         <div>
           <p><span class="mui-icon mui-icon-extra mui-icon-extra-gold"></span>本月积分</p>
@@ -49,24 +49,18 @@
         </div>
       </div>
       <div class="team">
-        <p><span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>TEAM</p>
+        <p><span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>用户信息</p>
         <div class="friends">
-          <div class="tou">
-            <img src="../assets/img/head.jpeg" alt="">
-          </div>
-          <div class="name">LUO MEI</div>
+          <div class="name">网名</div>
+          <p class="num">{{user.nickname}}</p>
         </div>
         <div class="friends">
-          <div class="tou">
-            <img src="../assets/img/head.jpeg" alt="">
-          </div>
-          <div class="name">LUO MEI</div>
+          <div class="name">电话号码</div>
+          <p class="num">{{user.mobile}}</p>
         </div>
         <div class="friends">
-          <div class="tou">
-            <img src="../assets/img/head.jpeg" alt="">
-          </div>
-          <div class="name">LUO MEI</div>
+          <div class="name">加入时间</div>
+          <p class="num">{{user.dateJoined}}</p>
         </div>
       </div>
     </div>

@@ -63,4 +63,12 @@ public interface CommentService {
      * @return 评论总数
      */
     int countByUserId(String userId);
+
+    /**
+     * 计算消息的评论
+     *
+     * @param userId 用户ID
+     * @return 消息的评论数
+     */
+    int countMsgByUserId(String userId);
 }

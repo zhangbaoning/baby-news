@@ -30,4 +30,12 @@ public interface MessageService {
      * @param message
      */
     int add(Message message);
+
+    /**
+     * 计算发布消息数
+     *
+     * @param userId 用户ID
+     * @return 发布消息数
+     */
+    int countPublish(String userId);
 }
