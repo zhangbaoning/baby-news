@@ -43,12 +43,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void deleteArticle(Article article) {
-        articleDao.delete(article);
+        articleDao.deleteByPrimaryKey(article);
     }
 
     @Override
     public void updateArticle(Article article) {
-        articleDao.updateByPrimaryKey(article);
+        article.setDateModified(new Timestamp(System.currentTimeMillis()));
+        articleDao.updateByPrimaryKeySelective(article);
     }
 
     @Override

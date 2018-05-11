@@ -83,6 +83,9 @@
                             _this.title = res.data.title;
                             _this.content = res.data.content;
                             _this.id = res.data.id;
+                            _this.descr = res.data.descr;
+                            _this.img = res.data.img;
+
 
                         });
                     }

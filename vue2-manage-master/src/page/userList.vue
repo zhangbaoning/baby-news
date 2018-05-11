@@ -25,9 +25,10 @@
                     label="角色">
                 </el-table-column>
                 <el-table-column
-                    prop="dataJoined"
+                    prop="dateJoined"
                     label="注册日期"
-                    width="220">
+                    width="220"
+                    :formatter="dateFormat">
                 </el-table-column>
             </el-table>
             <div class="Pagination" style="text-align: left;margin-top: 10px;">
@@ -46,7 +47,7 @@
 
 <script>
     import headTop from '../components/headTop'
-    // import {getUserCount, getUserList} from '@/api/getData'
+    import moment from 'moment'
 
     export default {
         data() {
@@ -64,19 +65,14 @@
             headTop,
         },
         methods: {
-            // async initData(){
-            //     try{
-            //         const countData = await getUserCount();
-            //         if (countData.status == 1) {
-            //             this.count = countData.count;
-            //         }else{
-            //             throw new Error('获取数据失败');
-            //         }
-            //         this.getUsers();
-            //     }catch(err){
-            //         console.log('获取数据失败', err);
-            //     }
-            // },
+            //时间格式化
+            dateFormat: function (row, column) {
+                var date = row[column.property];
+                if (date == undefined) {
+                    return "";
+                }
+                return moment(date).format("YYYY-MM-DD");
+            },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },

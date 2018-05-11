@@ -46,7 +46,7 @@
             <el-dialog title="修改分类信息" v-model="dialogFormVisible">
                 <el-form :model="selectTable">
                     <el-form-item label="分类id" label-width="100px">
-                        <el-input v-model="selectTable.id" auto-complete="off"></el-input>
+                        <el-input v-model="selectTable.id" auto-complete="off" :disabled="true"></el-input>
                     </el-form-item>
                     <el-form-item label="分类名称" label-width="100px">
                         <el-input v-model="selectTable.name" auto-complete="off"></el-input>
@@ -83,15 +83,6 @@
 <script>
     import headTop from '../components/headTop'
     import {baseImgPath, baseUrl} from '@/config/env'
-    import {
-        deleteFood,
-        getFoods,
-        getFoodsCount,
-        getMenu,
-        getMenuById,
-        getResturantDetail,
-        updateFood
-    } from '@/api/getData'
 
     export default {
         data() {
@@ -152,6 +143,10 @@
                 console.log('222222222222221111222');
                 console.log(this.selectTable);
                 this.$ajax.post('apis/category/add', this.selectTable);
+                this.addFormVisible = false;
+                setTimeout(() => {
+                    this.initData()
+                }, 500);
             },
             // 添加分类页面
             addCategory() {
@@ -179,6 +174,9 @@
             // 删除分类
             handleDelete(index, row) {
                 this.$ajax.get('apis/category/delete', {params: {id: row.id}});
+                setTimeout(() => {
+                    this.initData()
+                }, 500);
             },
             // 初始化数据，得到全部分类
             initData() {
@@ -186,45 +184,7 @@
                 this.$ajax.post('apis/category/getAll').then(function (res) {
                     _this.tableData = res.data;
                 });
-            },
-            async getMenu() {
-                this.menuOptions = [];
-                try {
-                    const menu = await getMenu({restaurant_id: this.selectTable.restaurant_id, allMenu: true});
-                    menu.forEach((item, index) => {
-                        this.menuOptions.push({
-                            label: item.name,
-                            value: item.id,
-                            index,
-                        })
-                    })
-                } catch (err) {
-                    console.log('获取食品种类失败', err);
-                }
-            },
-            async getFoods() {
-                const Foods = await getFoods({
-                    offset: this.offset,
-                    limit: this.limit,
-                    restaurant_id: this.restaurant_id
-                });
-                this.tableData = [];
-                Foods.forEach((item, index) => {
-                    const tableData = {};
-                    tableData.name = item.name;
-                    tableData.item_id = item.item_id;
-                    tableData.description = item.description;
-                    tableData.rating = item.rating;
-                    tableData.month_sales = item.month_sales;
-                    tableData.restaurant_id = item.restaurant_id;
-                    tableData.category_id = item.category_id;
-                    tableData.image_path = item.image_path;
-                    tableData.specfoods = item.specfoods;
-                    tableData.index = index;
-                    this.tableData.push(tableData);
-                })
             }
-
         }
     }
 </script>

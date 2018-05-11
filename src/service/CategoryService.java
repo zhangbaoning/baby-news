@@ -47,4 +47,13 @@ public interface CategoryService {
      * @return 分类集合
      */
     List<Category> selectAllCategory();
+
+    /**
+     * 通过分类主键查询分类信息
+     *
+     * @param categoryId 分类编号
+     * @return 分类详情
+     */
+    Category selectByPrimarykey(String categoryId);
+
 }

@@ -1,13 +1,18 @@
 package controller;
 
+import dto.ArticleInfoRespDTO;
 import entity.Article;
+import entity.Category;
 import entity.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ArticleService;
+import service.CategoryService;
 import service.UserService;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,6 +28,8 @@ public class ArticleController {
     private ArticleService articleService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 发布资讯
@@ -44,9 +51,9 @@ public class ArticleController {
      *
      * @param articleId
      */
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
-    public void deleteArticle(String articleId) {
+    public void deleteArticle(@RequestParam String articleId) {
         try {
             Article article = new Article();
             article.setId(articleId);
@@ -95,22 +102,33 @@ public class ArticleController {
     /**
      * 分页查询资讯
      *
-     * @param page
-     * @param size
      * @return
      */
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
-    public List<Article> getArticleAll() {
+    public List<ArticleInfoRespDTO> getArticleAll() {
         Integer page = 1;
         Integer size = 10;
-        List<Article> articleList = null;
+        List<Article> articleList;
+        List<ArticleInfoRespDTO> dtoList = new LinkedList<>();
         try {
             articleList = articleService.selectArticleAll(page, size);
+            for (Article article : articleList) {
+                ArticleInfoRespDTO respDTO = new ArticleInfoRespDTO();
+                BeanUtils.copyProperties(article, respDTO);
+                User user = userService.getUserByPrimaryKey(article.getUserId());
+                respDTO.setAuthor(user.getNickname());
+
+                Category category = categoryService.selectByPrimarykey(article.getCategoryId());
+                if (category != null) {
+                    respDTO.setCategory(category.getName());
+                }
+                dtoList.add(respDTO);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return articleList;
+        return dtoList;
 
     }
 

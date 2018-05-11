@@ -20,7 +20,11 @@
                 </el-table-column>
                 <el-table-column
                     label="文章作者"
-                    prop="user">
+                    prop="author">
+                </el-table-column>
+                <el-table-column
+                    label="分类"
+                    prop="category">
                 </el-table-column>
                 <el-table-column
                     label="创建时间"
@@ -29,7 +33,7 @@
                 </el-table-column>
                 <el-table-column
                     label="修改时间"
-                    prop="dateOfModified"
+                    prop="dateModified"
                     :formatter="dateFormat">
                 </el-table-column>
                 <el-table-column label="操作" width="200">
@@ -114,8 +118,15 @@
             async handleDelete(index, row) {
                 try {
                     console.log(row.id);
-                    this.$ajax.post('apis/article/delete', row.id);
-                    this.getArticleList();
+                    this.$ajax.get('apis/article/delete', {
+                        params: {
+                            articleId: row.id
+                        }
+                    });
+                    setTimeout(() => {
+                        this.getArticleList();
+                    }, 500);
+                    this.tableData.splice(index, 1);
                     // if (res.status == 1) {
                     //     this.$message({
                     //         type: 'success',

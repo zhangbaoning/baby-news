@@ -76,4 +76,16 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categoryList = categoryDao.selectAll();
         return categoryList;
     }
+
+    /**
+     * 通过分类主键查询分类信息
+     *
+     * @param categoryId 分类编号
+     * @return 分类详情
+     */
+    @Override
+    public Category selectByPrimarykey(String categoryId) {
+        Category category = categoryDao.selectByPrimaryKey(categoryId);
+        return category;
+    }
 }
