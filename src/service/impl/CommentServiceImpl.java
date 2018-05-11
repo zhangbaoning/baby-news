@@ -44,6 +44,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     /**
+     * 通过主键去删除评论
+     *
+     * @param commentId
+     */
+    @Override
+    public int deleteByPrimaykey(String commentId) {
+
+        return commentDao.deleteByPrimaryKey(commentId);
+    }
+
+    /**
      * 更新
      *
      * @param comment

@@ -112,7 +112,9 @@ public class ArticleController {
         List<Article> articleList;
         List<ArticleInfoRespDTO> dtoList = new LinkedList<>();
         try {
+//            查询所有的资讯
             articleList = articleService.selectArticleAll(page, size);
+//            循环查询外键关联的信息
             for (Article article : articleList) {
                 ArticleInfoRespDTO respDTO = new ArticleInfoRespDTO();
                 BeanUtils.copyProperties(article, respDTO);

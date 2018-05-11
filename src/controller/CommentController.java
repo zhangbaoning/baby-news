@@ -54,13 +54,13 @@ public class CommentController {
     @RequestMapping(value = "/getAll", method = RequestMethod.POST)
     @ResponseBody
     public List<CommentRespDTO> getAllComment() {
-        List respList = new ArrayList();
-        CommentRespDTO commentRespDTO = new CommentRespDTO();
+        List<CommentRespDTO> respDTOList = new ArrayList();
 
         List<Comment> commentList = commentService.selectAllComment();
 
 //        通过评论得到文章题目
         for (Comment comment : commentList) {
+            CommentRespDTO commentRespDTO = new CommentRespDTO();
             Article article = new Article();
 //            将评论中的文章ID查询到文章
             article.setId(comment.getArticleId());
@@ -69,15 +69,19 @@ public class CommentController {
             commentRespDTO.setId(comment.getId());
 
             User user = userService.getUserByPrimaryKey(comment.getUserId());
-            commentRespDTO.setNickname(user.getNickname());
-            commentRespDTO.setArticle(getArticle.getTitle());
+            if (user != null) {
+                commentRespDTO.setNickname(user.getNickname());
+            }
+            if (getArticle != null) {
+                commentRespDTO.setArticle(getArticle.getTitle());
+            }
             commentRespDTO.setPublishTime(comment.getPublishTime());
             commentRespDTO.setComment(comment.getContent());
 
-            respList.add(commentRespDTO);
+            respDTOList.add(commentRespDTO);
 
         }
-        return respList;
+        return respDTOList;
     }
 
     /**
@@ -88,7 +92,8 @@ public class CommentController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public void deleteComment(@RequestBody Comment comment) {
-        commentService.deleteComment(comment);
+        int i = commentService.deleteByPrimaykey(comment.getId());
+        System.out.println("删除方法运行:" + i);
     }
 
     /**

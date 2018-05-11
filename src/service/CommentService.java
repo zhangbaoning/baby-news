@@ -25,6 +25,12 @@ public interface CommentService {
     void deleteComment(Comment comment);
 
     /**
+     * 通过主键去删除评论
+     *
+     * @param commentId
+     */
+    int deleteByPrimaykey(String commentId);
+    /**
      * 更新
      *
      * @param comment
