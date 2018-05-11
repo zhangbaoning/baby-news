@@ -62,7 +62,7 @@
       // 获取分类
       getCategory() {
         var _this = this;
-        this.$ajax.post('apis/category/getAll').then(function (res) {
+        this.$ajax.get('apis/category/getAll').then(function (res) {
           _this.categories = res.data;
           console.log(res);
         })

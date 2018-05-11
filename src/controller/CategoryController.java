@@ -24,7 +24,7 @@ public class CategoryController {
      *
      * @return 分类集合
      */
-    @RequestMapping(value = "/getAll", method = RequestMethod.POST)
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
     public List<Category> getAllCategory() {
         List<Category> categoryList = categoryService.selectAllCategory();

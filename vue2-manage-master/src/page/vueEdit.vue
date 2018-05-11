@@ -7,6 +7,9 @@
         <el-input class="inputImg" v-model="img" placeholder="封面地址">
             <template slot="prepend">Http://</template>
         </el-input>
+        <el-select v-model="categoryId" placeholder="请选择分类">
+            <el-option :label="category.name" :value="category.id" v-for="category in categories"/>
+        </el-select>
         <!--内容-->
         <div class="edit_container">
             <quill-editor v-model="content"
@@ -29,6 +32,10 @@
     export default {
         data() {
             return {
+                categoryId: '',
+                descr: '',
+                img: '',
+                categories: [],
                 id: '',
                 content: '',
                 title: '',
@@ -48,6 +55,14 @@
             onEditorReady(editor) {
                 console.log('editor ready!', editor)
             },
+            getAllCategories() {
+                var _this = this;
+                this.$ajax.get('apis/category/getAll').then(function (res) {
+                    _this.categories = res.data;
+                    console.log(categories);
+
+                })
+            },
             // 提交
             submit() {
                 let article = {
@@ -56,7 +71,8 @@
                     content: this.content,
                     userId: sessionStorage.getItem('user'),
                     descr: this.descr,
-                    img: this.img
+                    img: this.img,
+                    categoryId: this.categoryId
                 };
                 // 如果ID存在的话进行更新，不存在的话进行新建
                 if (this.id) {
@@ -64,6 +80,7 @@
                     this.$message.success('更新成功！');
                 } else {
                     console.log('id不存在');
+                    console.log(this.categoryId);
                     this.$ajax.post('/apis/article/post', article);
                     this.$message.success('提交成功！');
                 }
@@ -85,6 +102,7 @@
                             _this.id = res.data.id;
                             _this.descr = res.data.descr;
                             _this.img = res.data.img;
+                            _this.categoryId = res.data.categoryId;
 
 
                         });
@@ -94,6 +112,7 @@
         },
         mounted: function () {
             this.getArticle();
+            this.getAllCategories();
         }
     }
 </script>

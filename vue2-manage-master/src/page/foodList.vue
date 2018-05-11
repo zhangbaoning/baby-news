@@ -181,7 +181,7 @@
             // 初始化数据，得到全部分类
             initData() {
                 var _this = this;
-                this.$ajax.post('apis/category/getAll').then(function (res) {
+                this.$ajax.get('apis/category/getAll').then(function (res) {
                     _this.tableData = res.data;
                 });
             }
