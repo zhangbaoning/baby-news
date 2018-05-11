@@ -3,18 +3,37 @@
     <mt-header class='mint-header' title='亲，欢迎登陆'></mt-header>
     <form class="mui-input-group">
       <div class="login-way">
-        <!--<span :class="[{'active':flag}]" @click='flag=true'>短信登录</span>-->
+        <span :class="[{'active':flag}]" @click='flag=true'>注册</span>
         <span :class="[{'active':!flag}]" @click='flag=false'>密码登录</span>
       </div>
       <div class="mui-input-row" v-show='!flag'>
         <label>用户名：</label>
         <input type="text" placeholder="请输入用户名" name='min' v-model='username'>
       </div>
-      <!--<div class="mui-input-row loginByphone" v-show='flag'>-->
-      <!--<label>手机号：</label>-->
-      <!--<input type="text" placeholder="请输入手机号" name='regex'>-->
-      <!--<span class="getCode">获取验证码</span>-->
-      <!--</div>-->
+      <div class="mui-input-row loginByphone" v-show='flag'>
+        <form>
+          <p>
+            <label>账号：</label>
+            <input v-model="username" type="text" placeholder="请输入要注册的账号" name='regex'>
+          </p>
+          <p>
+            <label>网名：</label>
+            <input v-model="nickname" type="text" placeholder="请输入网名" name='regex'>
+          </p>
+          <p>
+            <label>密码：</label>
+            <input v-model="password" type="text" placeholder="请输入密码" name='regex'>
+          </p>
+          <p>
+            <label>密码：</label>
+            <input v-model="rePassword" type="text" placeholder="请再次输入密码" name='regex'>
+          </p>
+          <p>
+            <label>手机号：</label>
+            <input v-model="mobile" type="text" placeholder="请输入手机号" name='regex'>
+          </p>
+        </form>
+      </div>
       <div class="mui-input-row" v-show='!flag'>
         <label>密码：</label>
         <input type="password" placeholder="请输入密码" name='password' v-model='password'>
@@ -25,8 +44,13 @@
       <!--<input type="text" placeholder="请输入验证码" name='code'>-->
       <!--</div>-->
       <div class="mui-button-row">
-        <button type="submit" class="mui-btn mui-btn-primary mui-btn-block" @click.prevent='login' tag="button"
+        <button type="submit" v-if="!flag" class="mui-btn mui-btn-primary mui-btn-block" @click.prevent='login'
+                tag="button"
         >登录
+        </button>
+        <button type="register" v-if="flag" class="mui-btn mui-btn-primary mui-btn-block" @click.prevent='register'
+                tag="button"
+        >注册
         </button>
       </div>
     </form>
@@ -41,6 +65,9 @@
       return {
         username: '',
         password: '',
+        rePassword: '',
+        nickname: '',
+        mobile: '',
         flag: false,
         msg: '用户名不少于4位',
         pswVal: '密码为6-15位数字或字符串组成',
@@ -49,6 +76,16 @@
       }
     },
     methods: {
+      register() {
+        var _this = this;
+        let user = {
+          username: this.username,
+          password: this.password,
+          nickname: this.nickname,
+          mobile: this.mobile,
+        };
+        this.$ajax.post('apis/user/register', user);
+      },
       login() {
         var _this = this;
         var param = {username: this.username, password: this.password};

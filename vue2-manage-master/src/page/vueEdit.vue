@@ -2,7 +2,9 @@
     <div>
         <head-top></head-top>
         <el-input v-model="id" v-if="false"/>
-        <el-input v-model="title" placeholder="标题"/>
+        <el-input class="title" v-model="title" placeholder="标题"/>
+        <el-input class="descr" type="textarea" v-model="descr" placeholder="简介"/>
+        <el-input class="inputImg" v-model="img" placeholder="封面地址"/>
         <!--内容-->
         <div class="edit_container">
             <quill-editor v-model="content"
@@ -50,7 +52,9 @@
                     id: this.id,
                     title: this.title,
                     content: this.content,
-                    userId: sessionStorage.getItem('user')
+                    userId: sessionStorage.getItem('user'),
+                    descr: this.descr,
+                    img: this.img
                 };
                 // 如果ID存在的话进行更新，不存在的话进行新建
                 if (this.id) {
@@ -105,13 +109,33 @@
         text-align: center;
     }
 
-    .el-input, .el-input__inner {
+    .title {
 
         width: 100%;
         display: inline-block;
         width: 400px;
-        margin-left: 150px;
+        margin-left: 25%;
         margin-top: 20px;
+        margin-bottom: 2%;
+    }
+
+    .descr {
+
+        min-height: 33px;
+        width: 50%;
+        margin-left: 20%;
+
+    }
+
+    .el-input {
+        margin-top: 1%;
+
+    }
+
+    .inputImg {
+
+        margin-left: 10%;
+        width: 80%;
 
     }
 </style>

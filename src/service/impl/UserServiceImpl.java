@@ -5,8 +5,10 @@ import entity.User;
 import org.springframework.stereotype.Service;
 import service.UserService;
 import tk.mybatis.mapper.entity.Example;
+import utils.UUIDUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service("userService")
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int insertUser(User user) {
+        user.setId(UUIDUtils.getId());
+
+        user.setDateJoined(new Date());
         return userDao.insert(user);
 
     }

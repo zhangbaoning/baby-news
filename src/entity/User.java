@@ -4,7 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -106,11 +106,12 @@ public class User {
 
     @Basic
     @Column(name = "date_joined", nullable = true)
+
     public Date getDateJoined() {
         return dateJoined;
     }
 
-    public void setDateJoined(Date dataJoined) {
+    public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;
     }
 

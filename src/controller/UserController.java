@@ -57,10 +57,11 @@ public class UserController {
         }
     }
 
-    public void register(User user) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public void register(@RequestBody User user) {
         Map responseMap = new HashMap(16);
         int info = userService.insertUser(user);
-
     }
 
     /**

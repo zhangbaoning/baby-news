@@ -4,12 +4,12 @@ import dao.ArticleDao;
 import entity.Article;
 import org.springframework.stereotype.Service;
 import service.ArticleService;
+import utils.UUIDUtils;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @Description
@@ -31,8 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void insertArticle(Article article) throws Exception {
 
 //        生成新的主键
-        article.setId(UUID.randomUUID().toString()
-                .replace("-", "").substring(0, 16));
+        article.setId(UUIDUtils.getId());
 
 //        设置发布时间为当前时间
         Date nowDate = new Date();
