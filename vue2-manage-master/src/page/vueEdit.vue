@@ -4,7 +4,9 @@
         <el-input v-model="id" v-if="false"/>
         <el-input class="title" v-model="title" placeholder="标题"/>
         <el-input class="descr" type="textarea" v-model="descr" placeholder="简介"/>
-        <el-input class="inputImg" v-model="img" placeholder="封面地址"/>
+        <el-input class="inputImg" v-model="img" placeholder="封面地址">
+            <template slot="prepend">Http://</template>
+        </el-input>
         <!--内容-->
         <div class="edit_container">
             <quill-editor v-model="content"

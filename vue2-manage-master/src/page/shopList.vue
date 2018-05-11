@@ -24,11 +24,13 @@
                 </el-table-column>
                 <el-table-column
                     label="创建时间"
-                    prop="datePublish">
+                    prop="datePublish"
+                    :formatter="dateFormat">
                 </el-table-column>
                 <el-table-column
                     label="修改时间"
-                    prop="dateOfModified">
+                    prop="dateOfModified"
+                    :formatter="dateFormat">
                 </el-table-column>
                 <el-table-column label="操作" width="200">
                     <template scope="scope">
@@ -70,6 +72,7 @@
         searchplace,
         updateResturant
     } from '@/api/getData'
+    import moment from 'moment'
 
     export default {
         data() {
@@ -93,13 +96,16 @@
             headTop,
         },
         methods: {
+            //时间格式化
+            dateFormat: function (row, column) {
+                var date = row[column.property];
+                if (date == undefined) {
+                    return "";
+                }
+                return moment(date).format("YYYY-MM-DD HH:mm:ss");
+            },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
-            },
-            handleCurrentChange(val) {
-                this.currentPage = val;
-                this.offset = (val - 1) * this.limit;
-                this.getResturants()
             },
             handleEdit(index, row) {
                 this.$router.push({path: 'vueEdit', query: {article_id: row.id}});
