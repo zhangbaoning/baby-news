@@ -56,6 +56,8 @@
   </div>
 </template>
 <script>
+  import mui from '../assets/mui/js/mui.min.js';
+
   export default {
     name: "communityInfo",
     data() {
@@ -90,7 +92,9 @@
           }, 500);
           this.commentsData.reverse();
         } else {
-          alert('请先登录');
+          var btnArray = ['取消', '确定'];
+          mui.confirm('请先去登陆', '未登录', btnArray, function (e) {
+          });
         }
       },
       getMessage() {

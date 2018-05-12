@@ -49,6 +49,8 @@
   </div>
 </template>
 <script>
+  import mui from '../assets/mui/js/mui.min.js';
+
   export default {
     name: "homeInfo",
     data() {
@@ -84,10 +86,15 @@
           };
           this.$ajax.post('apis/comment/add', comment);
           // 发布成功后重新获取评论集合
-          this.getComments();
+          setTimeout(() => {
+            this.getComments();
+          }, 500);
+          this.inputComment = '';
           this.commentsData.reverse();
         } else {
-          alert('请先登录');
+          var btnArray = ['取消', '确定'];
+          mui.confirm('请先去登陆', '未登录', btnArray, function (e) {
+          });
         }
       },
       // 获取文章详情
