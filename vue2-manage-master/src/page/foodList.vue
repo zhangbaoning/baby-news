@@ -119,21 +119,6 @@
         created() {
             this.initData();
         },
-        computed: {
-            specs: function () {
-                let specs = [];
-                if (this.selectTable.specfoods) {
-                    this.selectTable.specfoods.forEach(item => {
-                        specs.push({
-                            specs: item.specs_name,
-                            packing_fee: item.packing_fee,
-                            price: item.price,
-                        })
-                    })
-                }
-                return specs
-            }
-        },
         components: {
             headTop,
         },

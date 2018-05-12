@@ -31,10 +31,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int insertUser(User user) {
+//        生成用户编号
         user.setId(UUIDUtils.getId());
-
+//        生成注册时间为当前时间
         user.setDateJoined(new Date());
-        return userDao.insert(user);
+//        只插入不为NULL的值，由数据库默认值自动补全空值
+        return userDao.insertSelective(user);
 
     }
 

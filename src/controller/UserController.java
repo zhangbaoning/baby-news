@@ -1,5 +1,6 @@
 package controller;
 
+import dto.UserDetailRespDTO;
 import dto.UserInfoRespDTO;
 import entity.User;
 import org.springframework.beans.BeanUtils;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.CommentService;
 import service.MessageService;
 import service.UserService;
+import utils.RespStatusUtils;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,9 +62,17 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public void register(@RequestBody User user) {
-        Map responseMap = new HashMap(16);
-        int info = userService.insertUser(user);
+    public Map<String, String> register(@RequestBody User user) {
+        Map<String, String> responseMap = new HashMap(2);
+        int result = userService.insertUser(user);
+        if (result == 1) {
+//            注册成功
+            responseMap.put(RespStatusUtils.STATUS, ResponseStatus.SUCCESS);
+        } else {
+//            注册失败
+            responseMap.put(RespStatusUtils.STATUS, ResponseStatus.FAILURE);
+        }
+        return responseMap;
     }
 
     /**
@@ -103,8 +114,19 @@ public class UserController {
         try {
             Map responseMap = new HashMap();
             List<User> userList = userService.getAll();
+            List<UserDetailRespDTO> dtoList = new LinkedList<>();
             if (userList != null) {
-                responseMap.put("userList", userList);
+                for (User user : userList) {
+                    UserDetailRespDTO respDTO = new UserDetailRespDTO();
+                    BeanUtils.copyProperties(user, respDTO);
+                    if ("1".equals(user.getRoleId())) {
+                        respDTO.setRole("管理员");
+                    } else if ("0".equals(user.getRoleId())) {
+                        respDTO.setRole("普通用户");
+                    }
+                    dtoList.add(respDTO);
+                }
+                responseMap.put("userList", dtoList);
                 responseMap.put("info", ResponseStatus.SUCCESS);
                 return responseMap;
             } else {

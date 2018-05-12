@@ -96,14 +96,7 @@
                 var _this = this;
                 this.$ajax.get('/apis/user/getAll').then(function (res) {
                     _this.userList = res.data.userList;
-                    // Users.forEach(item => {
-                    //     const data = {};
-                    //     data.username = item.username;
-                    //     data.registe_time = item.data_joined;
-                    //     // tableData.city = item.city;
-                    //     this.tableData.push(data);
-                    //     // console.log(this.tableData);
-                    // });
+
                 })
             }
         },

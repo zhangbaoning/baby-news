@@ -10,29 +10,25 @@
         <label>用户名：</label>
         <input type="text" placeholder="请输入用户名" name='min' v-model='username'>
       </div>
-      <div class="mui-input-row loginByphone" v-show='flag'>
-        <form>
-          <p>
-            <label>账号：</label>
-            <input v-model="username" type="text" placeholder="请输入要注册的账号" name='regex'>
-          </p>
-          <p>
-            <label>网名：</label>
-            <input v-model="nickname" type="text" placeholder="请输入网名" name='regex'>
-          </p>
-          <p>
-            <label>密码：</label>
-            <input v-model="password" type="text" placeholder="请输入密码" name='regex'>
-          </p>
-          <p>
-            <label>密码：</label>
-            <input v-model="rePassword" type="text" placeholder="请再次输入密码" name='regex'>
-          </p>
-          <p>
-            <label>手机号：</label>
-            <input v-model="mobile" type="text" placeholder="请输入手机号" name='regex'>
-          </p>
-        </form>
+      <div class="mui-input-row" v-show='flag'>
+        <label>账号：</label>
+        <input v-model="username" type="text" placeholder="请输入要注册的账号" name='regex'>
+      </div>
+      <div class="mui-input-row" v-show='flag'>
+        <label>网名：</label>
+        <input v-model="nickname" type="text" placeholder="请输入网名" name='regex'>
+      </div>
+      <div class="mui-input-row" v-show='flag'>
+        <label>密码：</label>
+        <input v-model="password" type="password" placeholder="请输入密码" name='regex'>
+      </div>
+      <div class="mui-input-row" v-show='flag'>
+        <label>密码：</label>
+        <input v-model="rePassword" type="password" placeholder="请再次输入密码" name='regex'>
+      </div>
+      <div class="mui-input-row" v-show='flag'>
+        <label>手机号：</label>
+        <input maxlength=11 v-model="mobile" type="text" placeholder="请输入手机号" name='regex'>
       </div>
       <div class="mui-input-row" v-show='!flag'>
         <label>密码：</label>
@@ -85,6 +81,8 @@
           mobile: this.mobile,
         };
         this.$ajax.post('apis/user/register', user);
+        // 注册成功后跳转到登陆界面
+        this.flag = false;
       },
       login() {
         var _this = this;
