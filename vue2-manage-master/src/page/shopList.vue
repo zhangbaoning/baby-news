@@ -6,37 +6,33 @@
                 :data="tableData"
                 style="width: 100%">
                 <el-form-item prop="id" v-if="false"/>
-                <el-form-item
-                    label="分类"
-                    prop="category">
-                </el-form-item>
                 <el-table-column
-                    label="文章题目"
-                    prop="title">
+                    label="资讯题目"
+                    prop="title" min-width="100px">
                 </el-table-column>
                 <el-table-column
-                    label="文章介绍"
-                    prop="descr">
+                    label="资讯介绍"
+                    prop="descr" min-width="200px">
                 </el-table-column>
                 <el-table-column
-                    label="文章作者"
-                    prop="author">
+                    label="资讯作者"
+                    prop="author" min-width="100px">
                 </el-table-column>
                 <el-table-column
                     label="分类"
-                    prop="category">
+                    prop="category" min-width="100px">
                 </el-table-column>
                 <el-table-column
                     label="创建时间"
                     prop="datePublish"
-                    :formatter="dateFormat">
+                    :formatter="dateFormat" min-width="170px">
                 </el-table-column>
                 <el-table-column
                     label="修改时间"
                     prop="dateModified"
-                    :formatter="dateFormat">
+                    :formatter="dateFormat" min-width="170px">
                 </el-table-column>
-                <el-table-column label="操作" width="200">
+                <el-table-column label="操作" min-width="150px">
                     <template scope="scope">
                         <el-button
                             size="mini"
@@ -67,15 +63,6 @@
 <script>
     import headTop from '../components/headTop'
     import {baseImgPath, baseUrl} from '@/config/env'
-    import {
-        cityGuess,
-        deleteResturant,
-        foodCategory,
-        getResturants,
-        getResturantsCount,
-        searchplace,
-        updateResturant
-    } from '@/api/getData'
     import moment from 'moment'
 
     export default {

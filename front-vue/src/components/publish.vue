@@ -29,7 +29,8 @@
             userId: id
           };
           this.$ajax.post('apis/message/postMessage', message);
-          this.$router.back();
+          this.$router.push('/community');
+          this.content = '';
         } else {
           console.log('执行');
           alert('请先登录');
