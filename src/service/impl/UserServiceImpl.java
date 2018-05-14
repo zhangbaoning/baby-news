@@ -46,8 +46,8 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    public void deleteUser(User user) {
-        userDao.delete(user);
+    public int deleteUser(User user) {
+        return userDao.delete(user);
 
     }
 

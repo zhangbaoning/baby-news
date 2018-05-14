@@ -17,7 +17,7 @@ public interface UserService {
      *
      * @param user
      */
-    void deleteUser(User user);
+    int deleteUser(User user);
 
     /**
      * 更新

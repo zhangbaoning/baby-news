@@ -1,15 +1,17 @@
 <template>
     <div>
         <head-top></head-top>
-        <el-input v-model="id" v-if="false"/>
-        <el-input class="title" v-model="title" placeholder="标题"/>
-        <el-input class="descr" type="textarea" v-model="descr" placeholder="简介"/>
+        <el-select class="selectCate" v-model="categoryId" placeholder="请选择分类">
+            <el-option :label="category.name" :value="category.id" v-for="category in categories"/>
+        </el-select>
         <el-input class="inputImg" v-model="img" placeholder="封面地址">
             <template slot="prepend">Http://</template>
         </el-input>
-        <el-select v-model="categoryId" placeholder="请选择分类">
-            <el-option :label="category.name" :value="category.id" v-for="category in categories"/>
-        </el-select>
+        <el-input v-model="id" v-if="false"/>
+        <el-input class="title" v-model="title" placeholder="标题"/>
+        <el-input class="descr" type="textarea" v-model="descr" placeholder="简介"/>
+
+
         <!--内容-->
         <div class="edit_container">
             <quill-editor v-model="content"
@@ -135,19 +137,12 @@
 
     .title {
 
-        width: 100%;
-        display: inline-block;
-        width: 400px;
-        margin-left: 25%;
-        margin-top: 20px;
-        margin-bottom: 2%;
+        margin-left: 40px;
     }
 
     .descr {
-
-        min-height: 33px;
-        width: 50%;
-        margin-left: 20%;
+        margin-top: 15px;
+        margin-left: 40px;
 
     }
 
@@ -157,9 +152,12 @@
     }
 
     .inputImg {
+        margin-left: 40px;
 
-        margin-left: 10%;
-        width: 80%;
+    }
 
+    .selectCate {
+        margin-top: 15px;
+        margin-left: 40px;
     }
 </style>
