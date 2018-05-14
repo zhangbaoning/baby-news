@@ -159,7 +159,7 @@
       margin-top: 15px;
       padding-bottom: 25px;
       .active {
-        flex: 2;
+        flex: 1;
         border: 1px solid #8097db;
         background-color: #8ea2e1;
         border-radius: 10px;
@@ -183,7 +183,7 @@
         }
       }
       .team {
-        flex: 1.2;
+        flex: 1;
         border: 1px solid #8097db;
         background-color: #8ea2e1;
         border-top-left-radius: 10px;
