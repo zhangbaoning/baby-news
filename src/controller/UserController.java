@@ -96,6 +96,7 @@ public class UserController {
         if (user != null) {
             UserInfoRespDTO userInfoRespDTO = new UserInfoRespDTO();
             BeanUtils.copyProperties(user, userInfoRespDTO);
+            userInfoRespDTO.setDateJoined(user.getDateJoined());
             userInfoRespDTO.setScore(commentScore);
             userInfoRespDTO.setCommentCount(countComment);
             userInfoRespDTO.setPublishActivity(publishActivity);

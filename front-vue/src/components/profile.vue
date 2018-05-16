@@ -60,13 +60,15 @@
         </div>
         <div class="friends">
           <div class="name">加入时间</div>
-          <p class="num">{{user.dateJoined}}</p>
+          <p class="num">{{user.dateJoined | dateFormat}}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import moment from 'moment'
+
   export default {
     data() {
       return {
@@ -74,6 +76,14 @@
       }
     },
     methods: {
+      //时间格式化
+      dateFormat: function (row, column) {
+        var date = row[column.property];
+        if (date == undefined) {
+          return "";
+        }
+        return moment(date).format("YYYY-MM-DD");
+      },
       // 获取登陆者信息
       getUser() {
         var _this = this;
