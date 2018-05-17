@@ -51,15 +51,15 @@
       <div class="team">
         <p><span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>用户信息</p>
         <div class="friends">
-          <div class="name">网名</div>
+          <div class="friends"><span class="avatar mui-icon mui-icon-contact"></span></div>
           <p class="num">{{user.nickname}}</p>
         </div>
         <div class="friends">
-          <div class="name">电话号码</div>
+          <div class="name"><span class="mui-icon mui-icon-phone-filled"/></div>
           <p class="num">{{user.mobile}}</p>
         </div>
         <div class="friends">
-          <div class="name">加入时间</div>
+          <div class="name"><span class="mui-icon-extra mui-icon-extra-outline"/></div>
           <p class="num">{{user.dateJoined}}</p>
         </div>
       </div>
@@ -201,8 +201,8 @@
 
         p {
           color: #e2ebfc;
-          padding: 20px;
           text-align: center;
+          padding: 0px 20px 20px 20px;
         }
         .friends {
           display: flex;
@@ -217,7 +217,6 @@
             }
           }
           .name {
-            flex: 2;
             font-size: 14px;
             color: #e2ebfc;
             margin-left: 10px;
@@ -226,6 +225,11 @@
         }
       }
     }
+  }
+
+  .avatar {
+    color: white;
+    padding-left: 10px;
   }
 </style>
 
