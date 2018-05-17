@@ -60,7 +60,7 @@
         </div>
         <div class="friends">
           <div class="name">加入时间</div>
-          <p class="num">{{user.dateJoined | dateFormat}}</p>
+          <p class="num">{{user.dateJoined}}</p>
         </div>
       </div>
     </div>
@@ -77,12 +77,12 @@
     },
     methods: {
       //时间格式化
-      dateFormat: function (row, column) {
+      dateFormat1: function (row, column) {
         var date = row[column.property];
         if (date == undefined) {
           return "";
         }
-        return moment(date).format("YYYY-MM-DD");
+        return moment(date).calendar();     // 2018 escaped 2018;
       },
       // 获取登陆者信息
       getUser() {
@@ -97,6 +97,7 @@
           console.log('获得作者信息');
           console.log(res);
           _this.user = res.data;
+          _this.user.dateJoined = moment(res.data.dateJoined).format('L');
         });
       },
     },
