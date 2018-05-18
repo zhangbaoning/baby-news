@@ -46,16 +46,17 @@
                     </template>
                 </el-table-column>
             </el-table>
-            <div class="Pagination">
-                <el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="currentPage"
-                    :page-size="20"
-                    layout="total, prev, pager, next"
-                    :total="count">
-                </el-pagination>
-            </div>
+            <!--FIXME 分页查询-->
+            <!--<div class="Pagination">-->
+            <!--<el-pagination-->
+            <!--@size-change="handleSizeChange"-->
+            <!--@current-change="handleCurrentChange"-->
+            <!--:current-page="currentPage"-->
+            <!--:page-size="20"-->
+            <!--layout="total, prev, pager, next"-->
+            <!--:total="count">-->
+            <!--</el-pagination>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
@@ -128,7 +129,6 @@
                         type: 'error',
                         message: err.message
                     });
-                    console.log('删除店铺失败')
                 }
             },
             getArticleList() {
