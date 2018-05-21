@@ -6,6 +6,7 @@
     <div class="banner">
       <div class="scroll">
         <mt-navbar v-model="selected" class="control-item" @click.active='getByCategory'>
+          <mt-tab-item id="0">全部</mt-tab-item>
           <mt-tab-item :id="category.id" v-for="category in categories">{{category.name}}</mt-tab-item>
         </mt-navbar>
       </div>
@@ -46,13 +47,18 @@
         console.log(val);
         console.log(oldVal);
         var _this = this;
-        this.$ajax.get('apis/article/getByCategoryId', {
-          params: {
-            categoryId: val
-          }
-        }).then(function (res) {
-          _this.articlesData = res.data;
-        });
+        if (val === '0') {
+          console.log('等于0');
+          this.getAllArticle();
+        } else {
+          this.$ajax.get('apis/article/getByCategoryId', {
+            params: {
+              categoryId: val
+            }
+          }).then(function (res) {
+            _this.articlesData = res.data;
+          });
+        }
       }
     },
     methods: {
@@ -135,5 +141,14 @@
         }
       }
     }
+  }
+
+  .mint-navbar .mint-tab-item .is-selected {
+    border-bottom: 3px solid #f90;
+    color: #f90;
+  }
+
+  .mint-tab-item {
+    color: #000000;
   }
 </style>

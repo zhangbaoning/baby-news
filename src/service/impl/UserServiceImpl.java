@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
         try {
             Example example = new Example(User.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("username").andEqualTo("password");
+            criteria.andEqualTo("username", user.getUsername()).andEqualTo("password", user.getPassword());
             userList = userDao.selectByExample(example);
         } catch (Exception e) {
             e.printStackTrace();

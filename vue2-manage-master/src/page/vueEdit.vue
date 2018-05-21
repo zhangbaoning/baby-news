@@ -85,7 +85,9 @@
                     console.log(this.categoryId);
                     this.$ajax.post('/apis/article/post', article);
                     this.$message.success('提交成功！');
-                    this.window.location.reload();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             },
             // 从文章管理跳转加载文章

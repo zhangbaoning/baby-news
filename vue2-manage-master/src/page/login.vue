@@ -75,7 +75,7 @@
                                 });
                                 // 将用户信息放在sessionStorage中
                                 sessionStorage.setItem('user', res.data.user);
-                                _this.$router.push('manage')
+                                _this.$router.push('shopList')
                             } else {
                                 _this.$message({
                                     type: 'error',
