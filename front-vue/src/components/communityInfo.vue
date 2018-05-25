@@ -92,8 +92,10 @@
           }, 500);
           this.commentsData.reverse();
         } else {
+          var that = this;
           var btnArray = ['取消', '确定'];
           mui.confirm('请先去登陆', '未登录', btnArray, function (e) {
+            that.$router.push('/person');
           });
         }
       },
