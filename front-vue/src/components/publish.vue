@@ -31,7 +31,9 @@
             userId: id
           };
           this.$ajax.post('apis/message/postMessage', message);
-          this.$router.push('/community');
+          setTimeout(() => {
+            this.$router.push('/community');
+          }, 500);
           this.content = '';
         } else {
           console.log('执行');
