@@ -78,7 +78,12 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return userList.get(0);
+        if (userList.size() > 0 && userList != null) {
+            return userList.get(0);
+
+        } else {
+            return null;
+        }
     }
 
     /**

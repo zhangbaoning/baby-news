@@ -55,6 +55,7 @@
 </template>
 
 <script>
+  import mui from '../assets/mui/js/mui.min.js';
 
   export default {
     data() {
@@ -88,31 +89,18 @@
         var _this = this;
         var param = {username: this.username, password: this.password};
         this.$ajax.post('apis/user/login', param).then(function (res) {
-          if (res.info = 'success') {
+          console.log(res);
+          if (res.data.info === 'success') {
             // 登陆成功将用户信息进行保存
             sessionStorage.setItem('user', res.data.user);
             console.log('跳转');
             _this.$router.push('/profile')
             window.location.reload();
+          } else if (res.data.info === 'failure') {
+            console.log('不匹配');
+            mui.toast('账号密码不匹配', {duration: 'long', type: 'div'})
           }
         });
-        // this.password = parseInt(this.password)
-        // if (this.uname !== 'em' || this.password !== 123456) {
-        //   Toast({
-        //     message: '用户名或密码错误！',
-        //     position: 'middle',
-        //     duration: 3000
-        //   })
-        //   this.password = null
-        // } else {
-        //   Toast({
-        //     message: '登录成功！',
-        //     position: 'middle',
-        //     duration: 1000
-        //   })
-        //   // this.$store.commit('addLogin',obj)
-        //   this.$router.push('/person')
-        // }
       }
     }
   }
@@ -164,6 +152,13 @@
         padding: 11px 15px;
       }
     }
+  }
+
+  .mui-toast-message {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 150px;
   }
 </style>
 

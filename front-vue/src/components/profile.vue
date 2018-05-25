@@ -23,7 +23,7 @@
     </header>
     <div class="info">
       <img src="../assets/img/bg.jpg" alt="">
-      <img :src="user.avatar" alt="" class="head">
+      <img :src="user.avatar" alt="" class="head" @click="logoutConfirm">
     </div>
     <div class="content">
       <p class="name">{{user.nickname}}</p>
@@ -68,6 +68,7 @@
 </template>
 <script>
   import moment from 'moment'
+  import mui from '../assets/mui/js/mui.min.js';
 
   export default {
     data() {
@@ -76,6 +77,19 @@
       }
     },
     methods: {
+      // 用户退出
+      logoutConfirm() {
+        var that = this;
+        console.log('退出');
+        mui.confirm('确定退出吗', '退出', ['退出', '取消'], function (e) {
+          console.log(e);
+          if (e.index === 0) {
+            that.$router.push('/person');
+            sessionStorage.removeItem('user');
+            window.location.reload();
+          }
+        });
+      },
       //时间格式化
       dateFormat1: function (row, column) {
         var date = row[column.property];

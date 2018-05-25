@@ -24,21 +24,21 @@
             <img :src="messageInfo.avatar"/>
             <div class="mui-media-body">
               {{messageInfo.nickname}}
-            <p>{{messageInfo.publishTime | dateFormat}}</p>
+              <p>{{messageInfo.publishTime | dateFormat}}</p>
+            </div>
           </div>
-        </div>
           <!--内容区-->
           <div class="mui-card-content">{{messageInfo.content}}</div>
           <!--页脚，放置补充信息或支持的操作-->
           <!--<div class="mui-card-footer">页脚</div>-->
         </div>
-          <!--TODO 图片实现-->
-          <!--<div class="photo">
-            <img src="../assets/img/1.jpg" alt="">
-            <img src="../assets/img/1.jpg" alt="">
-            <img src="../assets/img/1.jpg" alt="">
-            <img src="../assets/img/1.jpg" alt="">
-          </div>-->
+        <!--TODO 图片实现-->
+        <!--<div class="photo">
+          <img src="../assets/img/1.jpg" alt="">
+          <img src="../assets/img/1.jpg" alt="">
+          <img src="../assets/img/1.jpg" alt="">
+          <img src="../assets/img/1.jpg" alt="">
+        </div>-->
         <!--</div>-->
       </router-link>
     </div>
@@ -140,6 +140,10 @@
 
   .mui-card-header::after, .mui-card-footer::before {
     height: 0px;
+  }
+
+  .mui-card-content {
+    margin: 10px 0px 10px 10px;
   }
 </style>
 
