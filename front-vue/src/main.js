@@ -6,7 +6,7 @@ import router from './router'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
-import '../src/assets/mui/css/mui.min.css'
+import '../src/assets/mui/css/mui.css'
 import '../src/assets/mui/css/icons-extra.css'
 import axios from 'axios'
 import moment from 'moment'
