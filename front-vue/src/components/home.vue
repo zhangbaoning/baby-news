@@ -1,7 +1,7 @@
 <template>
   <div class="information">
     <!-- 头部部分 -->
-    <mt-header fixed title="育 婴 咨 询"></mt-header>
+    <mt-header fixed title="育 儿 资 讯"></mt-header>
     <!-- 导航栏 -->
     <div class="banner">
       <div class="scroll">

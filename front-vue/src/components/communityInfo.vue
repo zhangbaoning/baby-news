@@ -7,7 +7,7 @@
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <div class="header">
-      <img src="../assets/img/20180418091612.jpg" alt="">
+      <img :src="messageData.avatar" alt="">
       <div class="userInfo">
         <span>{{messageData.nickname}}</span><br>
         <p>{{messageData.publishTime | dateFormat}}</p>
@@ -43,7 +43,7 @@
             <div class="comment-top">
               <div class="avatar">
                 <img
-                  src="//upload.jianshu.io/users/upload_avatars/11185255/20396f34-ff9f-48f3-a6e8-371685f14561.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/102/h/102">
+                  :src="comment.avatar">
               </div>
               <div class="name">{{comment.nickname}}</div>
             </div>

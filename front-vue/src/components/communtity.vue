@@ -1,6 +1,6 @@
 <template>
   <div class="community">
-    <mt-header fixed title="育 婴 社 区"></mt-header>
+    <mt-header fixed title="育 儿 社 区"></mt-header>
     <img src="../assets/img/she.jpg" alt="" class="shequ">
     <!-- <router-link to="/community/communityInfo/1">emmm</router-link>
     <router-view></router-view> -->

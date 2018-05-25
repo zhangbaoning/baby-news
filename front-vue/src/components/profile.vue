@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="team">
-        <p><span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>用户信息</p>
+        <p style="margin-top: 15px;"><span class="mui-icon mui-icon-extra mui-icon-extra-peoples"></span>用户信息</p>
         <div class="friends">
           <div class="friends"><span class="avatar mui-icon mui-icon-contact"></span></div>
           <p class="num">{{user.nickname}}</p>
