@@ -6,18 +6,32 @@
     <router-view></router-view> -->
     <div class="commList" v-for="messageInfo in messageList">
       <router-link class="content" :to="'/community/communityInfo/'+messageInfo.id" tag="div">
-        <div class="header">
-          <img :src="messageInfo.avatar" alt="">
-          <div class="userInfo">
-            <span>{{messageInfo.nickname}}</span><br>
+        <!--<div class="header">-->
+        <!--<img :src="messageInfo.avatar" alt="">-->
+        <!--<div class="userInfo">-->
+        <!--<span>{{messageInfo.nickname}}</span><br>-->
+        <!--<p>{{messageInfo.publishTime | dateFormat}}</p>-->
+        <!--<p>{{phoneInfo}}</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="banner">-->
+        <!--<div class="text">-->
+        <!--<span>{{messageInfo.content}}</span>-->
+        <!--</div>-->
+        <div class="mui-card">
+          <!--页眉，放置标题-->
+          <div class="mui-card-header mui-card-media">
+            <img :src="messageInfo.avatar"/>
+            <div class="mui-media-body">
+              {{messageInfo.nickname}}
             <p>{{messageInfo.publishTime | dateFormat}}</p>
-            <p>{{phoneInfo}}</p>
           </div>
         </div>
-        <div class="banner">
-          <div class="text">
-            <span>{{messageInfo.content}}</span>
-          </div>
+          <!--内容区-->
+          <div class="mui-card-content">{{messageInfo.content}}</div>
+          <!--页脚，放置补充信息或支持的操作-->
+          <!--<div class="mui-card-footer">页脚</div>-->
+        </div>
           <!--TODO 图片实现-->
           <!--<div class="photo">
             <img src="../assets/img/1.jpg" alt="">
@@ -25,7 +39,7 @@
             <img src="../assets/img/1.jpg" alt="">
             <img src="../assets/img/1.jpg" alt="">
           </div>-->
-        </div>
+        <!--</div>-->
       </router-link>
     </div>
     <router-link class="mint-palette-button pb publish" tag="div" to="/publish">
@@ -41,6 +55,8 @@
   </div>
 </template>
 <script>
+  import '../assets/mui/css/mui.min.css';
+
   export default {
     name: "community",
     data() {
@@ -120,6 +136,10 @@
         }
       }
     }
+  }
+
+  .mui-card-header::after, .mui-card-footer::before {
+    height: 0px;
   }
 </style>
 
