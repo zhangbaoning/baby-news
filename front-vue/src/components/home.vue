@@ -143,9 +143,9 @@
     }
   }
 
-  .mint-navbar .mint-tab-item .is-selected {
-    border-bottom: 3px solid #f90;
-    color: #f90;
+  .mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 3px solid #FFA500 !important;
+    color: #FFA500 !important;
   }
 
   .mint-tab-item {
